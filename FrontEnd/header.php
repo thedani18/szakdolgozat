@@ -6,7 +6,7 @@
 	<link rel='stylesheet' href='./FrontEnd/css/mystyle.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/bg.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/login.css' />
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' />
+	<script type="text/javascript" src="./FrontEnd/js/visible.js"></script>
 	<title>E-Penna</title>
 </head>
 
@@ -28,17 +28,32 @@ if ($_POST["bg"]) {
 ?>
 <div class='full'>
 
-<header>
-</header>
 <?php
 if (isset($_SESSION["login"])) {
-	echo "<nav>";
-		echo "<ul>";
-			echo "<li><a href='./?p=adatok'>Menüpont</a></li>";
-			echo "<li><a href='./'>home</a></li>";
-			echo "<li><a href='./?logout'>Kilépés</a></li>";
-		echo "</ul>";
-	echo "</nav>";
+	echo '<nav>
+		<div class="nav_row">
+			<div class="info_coll">
+				<div class="info">
+					<button class="usermenu" onclick="InfoDropdown()">
+						<div class="userimg">
+							<img src="./FrontEnd/img/profile.jpg" alt="profile.jpg">
+						</div>
+						<div class="username">
+							<p id="name">Teszt Elek</p>
+							<p id="timer">(Visszaszámláló)</p>
+						</div>
+					</button>
+					<div id="dropdown">
+						<a href="./?logout">Kilépés</a>
+					</div>
+				</div>
+			</div>
+			<div class="menu_coll">
+				<a href="./?p=adatok">Osztályzatok</a>
+				<a href="./">home</a>
+			</div>
+		</div>
+	</nav>';
 }
 ?>
 <main>

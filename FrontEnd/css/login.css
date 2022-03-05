@@ -18,7 +18,6 @@
 .login {
     width: 60%;
     border: 3px black;
-    font-family: Helvetica;
 	margin:auto;
 }
 .login h1{
@@ -29,7 +28,7 @@
     height: 280px;
 }
 .login_head {
-    background-color: var(--color);
+    background-color: var(--maincolor);
     height: 80px;
     border-radius: 5px 5px 0 0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -60,20 +59,20 @@ input[type=text], input[type=password]{
     padding: 12px 10px;
     margin: 3px 0;  
     display: inline-block;
-    border: 2px solid var(--color);
+    border: 2px solid var(--maincolor);
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 16px;
 }
 
-input[type=text]:focus{
+input[type=text]:focus, input[type=text]:hover {
     border: 2px solid #0a967f;
 }
 
 input[type=submit] {
     width: 50%;
     height: 34px;
-    background-color: var(--color);
+    background-color: var(--maincolor);
     color: white;
     border: none;
     border-radius: 4px;
@@ -89,15 +88,11 @@ input[type=submit]:hover {
 .inline a{
     float: left;
     text-decoration: underline;
-    color: var(--color);
-    font-size: 12px;
+    color: var(--maincolor);
+    font-size: 2em;
     padding-left: 10px;
 }
 
 .inline a:hover{
     color: #0a967f;
-}
-
-nav {
-    color: black;
 }
