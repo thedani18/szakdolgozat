@@ -1,6 +1,6 @@
 <?php
 
-$_POST["bg"] = true;
+$_POST["bg"] = 1;
 if (isset($_SESSION["login"])) {
 	$content="./FrontEnd/pages/home.php";
 	if (isset($_GET['p']))
@@ -9,7 +9,7 @@ if (isset($_SESSION["login"])) {
 		{
 			case "adatok": 
 				//$content="./FrontEnd/pages/adatok.php";
-				$_POST["bg"] = false;
+				$_POST["bg"] = 0;
 				break;
 			default: 
 				$content="./FrontEnd/pages/home.php";
@@ -20,6 +20,4 @@ if (isset($_SESSION["login"])) {
 else {
 	$content="./FrontEnd/pages/login.php";
 }
-
-
 ?>

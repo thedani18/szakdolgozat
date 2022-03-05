@@ -1,7 +1,7 @@
 :root{
-    --maincolor: #0ca78e;
+    --maincolor: #00bda5;
     --altcolor: #F9F9F9;
-    --navcolor: #9F9F9f;
+    --navcolor: #727272;
 }
 
 * {
@@ -29,17 +29,15 @@ body {
 .menu_coll {
     flex: 1 1;
     min-height: 100%;
+    
 }
 
-.nav_row {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
 
 nav {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    padding-bottom: 15px;
 }
 
 .info_coll {
@@ -118,8 +116,7 @@ nav .menu_coll {
     padding: 15px;
 }
 
-nav .menu_coll a {
-	color: white;
+#menu a{
     padding: 0 20px;
 }
 

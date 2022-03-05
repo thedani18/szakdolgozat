@@ -12,8 +12,9 @@
 
 <body id='pagetop'>
 
+
 <?php
-if ($_POST["bg"]) {
+if ($_POST["bg"] == 1) {
 	echo "<div class='flex-container'>";
 		echo "<div id='row'>";
 			echo "<div id='col1'></div>";
@@ -30,7 +31,7 @@ if ($_POST["bg"]) {
 
 <?php
 if (isset($_SESSION["login"])) {
-	echo '<nav>
+	echo '<nav id="nav">
 		<div class="nav_row">
 			<div class="info_coll">
 				<div class="info">
@@ -44,18 +45,23 @@ if (isset($_SESSION["login"])) {
 						</div>
 					</button>
 					<div id="dropdown">
+						<a href="./">Főoldal</a>
 						<a href="./?logout">Kilépés</a>
 					</div>
 				</div>
 			</div>
 			<div class="menu_coll">
-				<a href="./?p=adatok">Osztályzatok</a>
-				<a href="./">home</a>
+				<div id="menu">
+					<a name="szoveg" href="./?p=adatok">Osztályzatok</a>
+					<a name="szoveg" href="./?p=adatok">Osztályzatok2</a>
+				</div>
 			</div>
 		</div>
 	</nav>';
 }
 ?>
+
+<?php echo "<script type='text/javascript'>MenuSwap(".$_POST["bg"].");</script>"; ?>
 <main>
 
 
