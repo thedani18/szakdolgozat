@@ -1,4 +1,9 @@
+<?php
+print_r($_SESSION["expire"]);
+echo "<br>";
+print_r($_SESSION["start"]);
+?>
+<p id="demo"></p>
+</button>
 
-<p>
-	Kezdőlap tartalma
-</p>
+<button onclick="Size()">width</button>

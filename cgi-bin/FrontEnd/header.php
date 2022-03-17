@@ -50,7 +50,7 @@ if (isset($_SESSION["login"])) {
 						</div>
 						<div class="username">
 							<p id="name">Teszt Elek</p>
-							<p>(<span id="time">00:00</span>)</p>
+							<p id="time">()</p>
 						</div>
 					</button>
 					<div id="dropdown">
@@ -67,10 +67,10 @@ if (isset($_SESSION["login"])) {
 			</div>
 		</div>
 	</nav>';
-	echo "<script type='text/javascript'>MenuSwap(".$_POST["bg"].");</script>";
-	echo "<script type='text/javascript'>Timer(".$_SESSION["expire"].");</script>"; 
 }
 ?>
+
+<?php echo "<script type='text/javascript'>MenuSwap(".$_POST["bg"].");</script>"; ?>
 <main>
 
 

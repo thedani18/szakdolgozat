@@ -14,7 +14,7 @@
 
 #row {
     flex:2;
-    display: flex;  
+    display: flex;
 }
 #col1 {
     background-color: var(--altcolor);
@@ -38,14 +38,4 @@
     background-color: var(--maincolor);
     flex: 1 1;
     min-height: 100%;
-}
-
-@media screen and (max-width:850px)
-{
-    #col2 {
-        display: none;
-    }
-    #col3 {
-        display: none;
-    }
 }

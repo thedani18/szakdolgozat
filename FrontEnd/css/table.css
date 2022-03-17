@@ -1,0 +1,70 @@
+table{
+    width: 75%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--altcolor);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 10px;
+}
+#tables {
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+th {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#tables tr{
+    background-color: white;
+    display: inline-block;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    color: var(--maincolor);
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#tables button{
+    background: none;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 10px;
+}
+td{
+    padding: 8px;
+}
+td {
+    color: var(--maincolor);
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+#tbar {
+    background-color: white;
+}
+
+#honap, #atlag {
+    width: 20%;
+}
+
+#jegyek {
+    width: auto;
+}
+
+tr:last-child td:first-child{
+    border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child{
+    border-bottom-right-radius: 10px;
+}

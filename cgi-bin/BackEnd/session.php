@@ -7,7 +7,6 @@ if (isset($_SESSION["start"]) && isset($_SESSION["expire"])) {
 	{ 
 		session_unset(); 
 		session_destroy(); 
-		unset($_COOKIE["login"]);
 		header('Location: ./');
 	}
 }

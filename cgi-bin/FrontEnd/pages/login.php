@@ -33,12 +33,14 @@
 	</div>
 </div>
 
+
+
 <?php
     if (isset($_POST["send"])) {
         if (!isset($_SESSION["login"])) {
             $_SESSION["login"] = "login";
             $_SESSION["start"] = time();
-            $_SESSION["expire"] = $_SESSION["start"] + (1 * 60);
+            $_SESSION["expire"] = $_SESSION["start"] + (30 * 60);
             header("location: ./");
         }
     }

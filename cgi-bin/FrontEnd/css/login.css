@@ -18,7 +18,7 @@
 .login {
     width: 60%;
     border: 3px black;
-	margin: auto;
+	margin:auto;
 }
 .login h1{
     text-align: center;
@@ -70,7 +70,7 @@ input[type=text]:focus, input[type=text]:hover {
 }
 
 input[type=submit] {
-    width: 100%;
+    width: 50%;
     height: 34px;
     background-color: var(--maincolor);
     color: white;
@@ -95,14 +95,4 @@ input[type=submit]:hover {
 
 .inline a:hover{
     color: #0a967f;
-}
-
-@media screen and (max-width:850px)
-{
-    #login_col2 {
-        display: none;
-    }
-    #login_col3 {
-        display: none;
-    }
 }

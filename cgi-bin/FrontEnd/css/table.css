@@ -1,0 +1,55 @@
+table{
+    width: 75%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+#tables {
+    margin-top: 10px;
+}
+
+th {
+    overflow: hidden;
+}
+th button{
+    background-color: var(--maincolor);
+    display: inline-block;
+    border: none;
+    text-align: left;
+    text-decoration: none;
+    color: var(--altcolor);
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+td{
+    padding: 8px;
+}
+td {
+    color: var(--maincolor);
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+#tmain {
+    background-color: var(--altcolor);
+}
+#tbar {
+    background-color: white;
+}
+
+#honap, #atlag {
+    width: 20%;
+}
+
+#jegyek {
+    width: auto;
+}
+
+tr:last-child td:first-child{
+    border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child{
+    border-bottom-right-radius: 10px;
+}
