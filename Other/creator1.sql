@@ -1,14 +1,14 @@
 CREATE TABLE szd_Jogosultsag (
-    jogId INT NOT NULL PRIMARY KEY,
+    jogId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     jogosultsag VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE szd_Felhasznalo (
-	felhId INT NOT NULL PRIMARY KEY,
+	felhId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     felhnev VARCHAR(40) NOT NULL,
     salt VARCHAR(90) NOT NULL,
     jelszo VARCHAR(90) NOT NULL,
-    jogId INT NOT NULL -- szd_Jogosultsag
+    jogId INT NOT NULL, -- szd_Jogosultsag
     csaladnev VARCHAR(15) NOT NULL,
     utonev VARCHAR(25) NOT NULL,
     szulido DATE NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE szd_Felhasznalo (
 );
 
 CREATE TABLE szd_Osztaly (
-	osztalyId INT NOT NULL PRIMARY KEY,
+	osztalyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     megnevezes VARCHAR(6) NOT NULL,
     ofId INT NOT NULL, -- szd_Felhasznalo
     FOREIGN KEY (ofId) REFERENCES szd_Felhasznalo(felhId)
@@ -31,12 +31,12 @@ CREATE TABLE szd_DiakOsztaly (
 );
 
 CREATE TABLE szd_Tantargy (
-	tantargyId INT NOT NULL PRIMARY KEY,
+	tantargyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     megnevezes VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE szd_TgyTr (
-	TTId INT NOT NULL PRIMARY KEY,
+	TTId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     tantargyId INT NOT NULL, -- szd_Tantargy
     tanarId INT NOT NULL, -- szd_Felhasznalo
     FOREIGN KEY (tantargyId) REFERENCES szd_Tantargy(tantargyId),
@@ -45,18 +45,18 @@ CREATE TABLE szd_TgyTr (
 
 CREATE TABLE szd_OsztTgyTr (
 	osztalyId INT NOT NULL, -- szd_Osztaly
-    TTId INT NOT NULL -- szd_TgyTr
+    TTId INT NOT NULL, -- szd_TgyTr
     FOREIGN KEY (osztalyId) REFERENCES szd_Osztaly(osztalyId),
     FOREIGN KEY (TTId) REFERENCES szd_TgyTr(TTId)
 );
 
 CREATE TABLE szd_JegyTipus (
-	tipusId INT NOT NULL,
+	tipusId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     suly VARCHAR(5) NOT NULL
 );
 
 CREATE TABLE szd_Beiras (
-	beirasId INT NOT NULL PRIMARY KEY,
+	beirasId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     datum DATE,
     tanarId INT NOT NULL, -- szd_Felhasznalo
     diakId INT NOT NULL, -- szd_Felhasznalo
