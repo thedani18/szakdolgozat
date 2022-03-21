@@ -25,7 +25,7 @@
 <?php
 if ($_POST["bg"] == 1) {
 	echo "<div class='flex-container'>";
-		echo "<div id='row'>";
+		echo "<div id='row' class='bg'>";
 			echo "<div id='col1'></div>";
 			echo "<div id='col2'>";
 				echo "<div id='triangle'></div>";
@@ -43,8 +43,8 @@ if (isset($_SESSION["login"])) {
 	echo '<nav id="nav">
 		<div class="nav_row">
 			<div class="info_coll">
-				<div class="info">
-					<button class="usermenu" onclick="InfoDropdown()">
+				<div id="info" class="info">
+					<div class="usermenu" onclick="InfoDropdown()">
 						<div class="userimg">
 							<img src="./FrontEnd/img/profile.jpg" alt="profile.jpg">
 						</div>
@@ -52,8 +52,8 @@ if (isset($_SESSION["login"])) {
 							<p id="name">Teszt Elek</p>
 							<p>(<span id="time">00:00</span>)</p>
 						</div>
-					</button>
-					<div id="dropdown">
+					</div>
+					<div id="dropdown" class="dropdown-content">
 						<a href="./">Főoldal</a>
 						<a href="./?logout">Kilépés</a>
 					</div>
