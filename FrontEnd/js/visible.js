@@ -52,7 +52,7 @@ function MenuSwap(bg) {
     else {
         if (bg == 1) {
             for (var i = 0; i < szoveg.length; i++) {
-                szoveg[i].style.color = "var(--altcolor)";
+                szoveg[i].style = "color: var(--altcolor);";
             }
             nav.style.boxShadow = "none";
             nav.style.backgroundColor = "none";
@@ -68,8 +68,8 @@ function MenuSwap(bg) {
 }
 
 function Open(parent,child) {
-    var x = document.getElementById(child);
     var y = document.getElementById(parent);
+    var x = document.getElementById(child);
     if(x.style.display === "table") {
         x.style.display = "none";
         y.style.borderBottomLeftRadius = "10px";
