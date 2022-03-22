@@ -9,10 +9,10 @@
                     <div class="login_content">
                         <form action="" method="post">
                             <div class="line">
-                                <input type="text" name="" id="" placeholder="Felhasználónév">
+                                <input type="text" name="fnev" id="fnev" placeholder="Felhasználónév">
                             </div>
                             <div class="line">
-                                <input type="password" name="" id="" placeholder="Jelszó">
+                                <input type="password" name="pw" id="pw" placeholder="Jelszó">
                             </div>
                             <div class="lower">
                             <p class="inline">
@@ -22,6 +22,7 @@
                                 <input type='submit' name='send' value='BEJELENTKEZÉS'>
                             </p>
                             </div>
+                            <?php echo "<p id='kiiras'>".$kiiras."</p>"; ?>
                         </form>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ function connect()
 	$host="localhost";
 	$user="root";
 	$pw="";
-	$db="school";
+	$db="szd_teszt";
 
 	$connect= new mysqli($host,$user,$pw,$db);
 	if($connect ->connect_error)

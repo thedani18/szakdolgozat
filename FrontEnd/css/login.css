@@ -97,6 +97,12 @@ input[type=submit]:hover {
     color: #0a967f;
 }
 
+#kiiras {
+    margin: 10px;
+    text-align: center;
+    color: red;
+}
+
 @media screen and (max-width:850px)
 {
     #login_col2 {

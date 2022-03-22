@@ -1,10 +1,3 @@
-<?php
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang='hu'>
 <head>
@@ -40,6 +33,7 @@ if ($_POST["bg"] == 1) {
 
 <?php
 if (isset($_SESSION["login"])) {
+	$user = User($_SESSION["login"]);
 	echo '<nav id="nav">
 		<div class="nav_row">
 			<div class="info_coll">
@@ -49,7 +43,7 @@ if (isset($_SESSION["login"])) {
 							<img src="./FrontEnd/img/profile.jpg" alt="profile.jpg">
 						</div>
 						<div class="username">
-							<p id="name">Teszt Elek</p>
+							<p id="name">'.$user["csaladnev"].' '.$user["utonev"].'</p>
 							<p>(<span id="time">00:00</span>)</p>
 						</div>
 					</div>
@@ -60,10 +54,14 @@ if (isset($_SESSION["login"])) {
 				</div>
 			</div>
 			<div class="menu_coll">
-				<div id="menu">
-					<a name="szoveg" href="./?p=osztalyzatok">Osztályzatok</a>
-					<a name="szoveg" href="./?p=adatok">Osztályzatok2</a>
-				</div>
+				<div id="menu">';
+					if ($_SESSION["jogosultsag"] == "tanar") {
+						echo '<a name="szoveg" href="./?p=osztalyzatok">Tanár</a>';
+					}
+					elseif ($_SESSION["jogosultsag"] == "diak") {
+						echo '<a name="szoveg" href="./?p=osztalyzatok">Diák</a>';
+					}
+			echo '</div>
 			</div>
 		</div>
 	</nav>';
@@ -72,8 +70,3 @@ if (isset($_SESSION["login"])) {
 }
 ?>
 <main>
-
-
-<?php
-
-?>
