@@ -82,20 +82,31 @@ function MenuSwap(bg) {
 }
 
 function Open(parent,child) {
-    var y = document.getElementById(parent);
-    var x = document.getElementById(child);
-    if(x.style.display === "table") {
-        x.style.display = "none";
-        y.style.borderBottomLeftRadius = "10px";
-        y.style.borderBottomRightRadius = "10px";
-        y.style.color = "var(--maincolor)";
-        y.style.backgroundColor = "white";
+    
+    var elems = document.querySelectorAll(".active");
+    [].forEach.call(elems, function(el) {
+        if (el != document.getElementById(child)) {
+            el.classList.remove("active");
+            setTimeout(function(){
+                var opened = document.querySelectorAll(".opened");
+                [].forEach.call(opened, function(x) {
+                    if (x != document.getElementById(parent)) {
+                        x.classList.remove("opened");
+                    }
+                });
+            },400);
+        }
+    });
+    if (!document.getElementById(child).classList.contains("active")) {
+        document.getElementById(parent).classList.toggle("opened");
+        document.getElementById(child).classList.toggle("active");
     }
     else {
-        x.style.display = "table";
-        y.style.borderBottomLeftRadius = "0";
-        y.style.borderBottomRightRadius = "0";
-        y.style.color = "var(--altcolor)";
-        y.style.backgroundColor = "var(--maincolor)";
+        document.getElementById(child).classList.toggle("active");
+        setTimeout(function(){
+            document.getElementById(parent).classList.toggle("opened");
+        },400);
+        
     }
+    
 }

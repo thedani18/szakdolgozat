@@ -204,7 +204,7 @@ nav .menu_coll {
 }
 
 .show {
-    display: block;
+    display: block !important;
 }
 
 @media screen and (max-width:850px)

@@ -21,7 +21,8 @@ th {
     -ms-user-select: none;
     user-select: none;
 }
-#tables tr{
+
+#tables tr {
     background-color: white;
     display: inline-block;
     border: none;
@@ -33,17 +34,7 @@ th {
     cursor: pointer;
     border-radius: 10px;
 }
-#tables button{
-    background: none;
-    border: none;
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
-    border-radius: 10px;
-}
-td{
-    padding: 8px;
-}
+
 td {
     color: var(--maincolor);
     border: 1px solid #ddd;
@@ -68,4 +59,26 @@ tr:last-child td:first-child{
 }
 tr:last-child td:last-child{
     border-bottom-right-radius: 10px;
+}
+
+.opened {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    color: var(--altcolor) !important;
+    background-color: var(--maincolor) !important;
+}
+
+.open {
+    display: table !important;
+}
+
+.collapse {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .5s;
+}
+
+.active {
+    max-height: 990px;
+    transition: max-height .5s;
 }
