@@ -49,6 +49,7 @@ if (isset($_SESSION["login"])) {
 					</div>
 					<div id="dropdown" class="dropdown-content">
 						<a href="./">Főoldal</a>
+						<a id="info" onclick="Info()">Info</a>
 						<a href="./?logout">Kilépés</a>
 					</div>
 				</div>
@@ -65,6 +66,51 @@ if (isset($_SESSION["login"])) {
 			</div>
 		</div>
 	</nav>';
+	if ($_SESSION["jogosultsag"] == "diak") {
+		$osztaly = Osztalyfonok($_SESSION["login"]);
+	}
+	$infokiir =
+	'<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div class="info-header">
+				<span class="close" onclick="Info()">&times;</span>
+			</div>
+			<div class="info-content">
+				<div class="row">
+					<div>
+						<span>családnév:</span>
+						<span>'.$user["csaladnev"].'</span>
+					</div>
+					<div>
+						<span>utónév:</span>
+						<span>'.$user["utonev"].'</span>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<span>Születési idő:</span>
+						<span>'.$user["szulido"].'</span>
+					</div>
+					<div>
+						<span>Születési hely:</span>
+						<span>'.$user["szulhely"].'</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<span>Osztályfőnök:</span>
+						<span>'.$osztaly["tcsaladnev"].' '.$osztaly["tutonev"].'</span>
+					</div>
+					<div>
+						<span>Osztály:</span>
+						<span>'.$osztaly["osztaly"].'</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>';
+	echo $infokiir;
 	echo "<script type='text/javascript'>MenuSwap(".$_POST["bg"].");</script>";
 	echo "<script type='text/javascript'>Timer(".$_SESSION["expire"].");</script>"; 
 }

@@ -80,6 +80,48 @@ function User($id)
     return $info;
 }
 
+function Osztalyfonok($id)
+{
+    $sql = 
+    "SELECT megnevezes, csaladnev, utonev 
+    FROM szd_osztaly
+    INNER JOIN szd_felhasznalo ON szd_osztaly.ofId = szd_felhasznalo.felhId
+    WHERE osztalyId = ".Osztaly($id).";";
+    $result=connect()->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $info["osztaly"] = $row["megnevezes"];
+        $info["tcsaladnev"] = $row["csaladnev"];
+        $info["tutonev"] = $row["utonev"];
+    }
+    else {
+        $info = null;
+    }
+
+    connect()->close();
+    return $info;
+}
+
+function Osztaly($id)
+{
+    $sql =
+    "SELECT osztalyId
+    FROM szd_diakosztaly
+    INNER JOIN szd_felhasznalo ON szd_diakosztaly.diakId = szd_felhasznalo.felhId
+    WHERE felhId = $id;";
+    $result=connect()->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $info = $row["osztalyId"];
+    }
+    else {
+        $info = null;
+    }
+
+    connect()->close();
+    return $info;
+}
+
 function Tantargyak($id)
 {
     $sql =

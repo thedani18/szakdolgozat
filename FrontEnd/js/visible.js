@@ -13,6 +13,24 @@ window.onclick = function(event) {
             }
         }
     }
+    if (event.target.matches('.modal')) {
+        var dropdowns = document.getElementsByClassName("modal");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+    /*var modal = document.getElementById("myModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }*/
+}
+
+function Info() {
+    document.getElementById("myModal").classList.toggle("show");
 }
 
 function Timer(expire) {

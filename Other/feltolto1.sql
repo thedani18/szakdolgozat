@@ -1,8 +1,8 @@
-INSERT INTO szd_Jogosultsag (jogosultsag) VALUES
+INSERT INTO szd_jogosultsag (jogosultsag) VALUES
 ('diak'),
 ('tanar');
 
-INSERT INTO szd_Felhasznalo (felhnev, salt, jelszo, jogId, csaladnev, utonev, szulido, szulhely) VALUES
+INSERT INTO szd_felhasznalo (felhnev, salt, jelszo, jogId, csaladnev, utonev, szulido, szulhely) VALUES
 ('tanar1','$6$$5fTmoqqro.fQ.084F0voX4SPYY1TFEclRimgaV.5ocLMuhZ0ZVKV7CPeRgGcRRJS5HY.Jw4lUMvEFMOSastap1','$6$$EnrixLQHcN6zbgF1kq90qwj3PbEhtO9Evz5qruPu0ZUoqy0GkUYQNMKSjeIl5lXeLN1EgGbRBokGqxli8dnEa/',2,'Tanár','István','1972-03-10','Budapest'),
 ('tanar2','$6$$RMnkx9sKXR.9VIbMZUIInUZpJCYYad5C5aujWltiBfchjtaOLIFFHn7EkyA1XlyVsH5hPBljailhy7E2IGUPi/','$6$$mrABjnppUpv63glQfcy4H.iT9f4d5S4Xbhttg9J154lIwDrmzWQ0nSuQL59n0ETu4gDy569JoNeR3kODhauVC/',2,'Tanár','Imre','1980-03-18','Budapest'),
 ('tanar3','$6$$rl2jaJrH8xQhALU88YVP6WmpHatQYl//cQyJL1TrLmWUFuLa2igeBUY8H1uKsgFXzaWF9Z1F8ZJh3b4d82u1g.','$6$$DiHjAcNSG8sMmfBIeTPP1iZHCreJaoy9dklxj0WHn4SI6afzQ9./F8D5qC1sPoDnsfqKgLJ2PIYz/bq5C18gC.',2,'Tanár','Ilona','1974-05-14','Budapest'),
@@ -23,12 +23,12 @@ INSERT INTO szd_Felhasznalo (felhnev, salt, jelszo, jogId, csaladnev, utonev, sz
 ('diak14','$6$$ZVXA/MEPtEcnviwdSMaPzuju0z8S3xMSGi.k8/CrbrLMX9b2p6C0xNNAGTFdI9gNX5gjyU1Z/Q.Ob/mlAFAjw0','$6$$KRIKNdNFwVF4A57V/yVn80rUyCMFhY3VdVi2Mf2CNfhi3ApH/lB/zZ5bA4Yt8ybsVPwAqsz2bQ1cm0w55a.gz1',1,'Diák','Benedek','2009-11-19','Budapest'),
 ('diak15','$6$$YhjrbwXlvNos199Y/u3oPO/0i8YTHTlZrWO6R7MViho6M75F1Tc2sFd1hsh9agpnUfrXyVxk.YN5P3TkTUl531','$6$$BizQ.b3N7sVBcrRje9XQ.T7ll4tVNwCWEh8JNFW0M08jiadA/teZsrkceWBchPCTTcUr364pD/zlLxsN2G5go.',1,'Diák','Zoltán','2008-07-10','Budapest');
 
-INSERT INTO szd_Osztaly (megnevezes, ofId) VALUES
+INSERT INTO szd_osztaly (megnevezes, ofId) VALUES
 ('12.c',2),
 ('11.d',3),
 ('9.a',4);
 
-INSERT INTO szd_DiakOsztaly (osztalyId, diakId) VALUES
+INSERT INTO szd_diakosztaly (osztalyId, diakId) VALUES
 (1,5),
 (1,6),
 (1,7),
@@ -45,7 +45,7 @@ INSERT INTO szd_DiakOsztaly (osztalyId, diakId) VALUES
 (3,18),
 (3,19);
 
-INSERT INTO szd_Tantargy (megnevezes) VALUES
+INSERT INTO szd_tantargy (megnevezes) VALUES
 ('magyar nyelv és irodalom'),
 ('matematika'),
 ('történelem'),
@@ -57,7 +57,7 @@ INSERT INTO szd_Tantargy (megnevezes) VALUES
 ('fizika'),
 ('biológia');
 
-INSERT INTO szd_TgyTr (tantargyId, tanarId) VALUES
+INSERT INTO szd_tgytr (tantargyId, tanarId) VALUES
 (1,1),
 (2,1),
 (3,1),
@@ -69,7 +69,7 @@ INSERT INTO szd_TgyTr (tantargyId, tanarId) VALUES
 (9,4),
 (10,4);
 
-INSERT INTO szd_OsztTgyTr (osztalyId, TTId) VALUES
+INSERT INTO szd_oszttgytr (osztalyId, TTId) VALUES
 (1,1),
 (1,2),
 (1,3),
@@ -89,7 +89,7 @@ INSERT INTO szd_OsztTgyTr (osztalyId, TTId) VALUES
 (3,9),
 (3,10);
 
-INSERT INTO szd_JegyTipus (suly) VALUES
+INSERT INTO szd_jegytipus (suly) VALUES
 ('100%'),
 ('200%'),
 ('300%');
