@@ -1,5 +1,7 @@
 <?php
 
+//TODO átírni showos megoldásra és úgy megcsinálni, ha másikra nyom rá akkor bezárja a többit
+
 function Atlag($jegyek)
 {
     $sum = 0;

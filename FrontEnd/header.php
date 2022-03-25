@@ -77,37 +77,33 @@ if (isset($_SESSION["login"])) {
 			</div>
 			<div class="info-content">
 				<div class="row">
-					<div>
-						<span>családnév:</span>
-						<span>'.$user["csaladnev"].'</span>
-					</div>
-					<div>
-						<span>utónév:</span>
-						<span>'.$user["utonev"].'</span>
-					</div>
+					<span>családnév:</span>
+					<span>'.$user["csaladnev"].'</span>
 				</div>
 				<div class="row">
-					<div>
-						<span>Születési idő:</span>
-						<span>'.$user["szulido"].'</span>
-					</div>
-					<div>
-						<span>Születési hely:</span>
-						<span>'.$user["szulhely"].'</span>
-					</div>
+					<span>utónév:</span>
+					<span>'.$user["utonev"].'</span>
 				</div>
-
 				<div class="row">
-					<div>
+					<span>Születési idő:</span>
+					<span>'.$user["szulido"].'</span>
+				</div>
+				<div class="row">
+					<span>Születési hely:</span>
+					<span>'.$user["szulhely"].'</span>
+				</div>';
+				if ($_SESSION["jogosultsag"] == "diak") {
+					$infokiir .= 
+					'<div class="row">
 						<span>Osztályfőnök:</span>
 						<span>'.$osztaly["tcsaladnev"].' '.$osztaly["tutonev"].'</span>
 					</div>
-					<div>
+					<div class="row">
 						<span>Osztály:</span>
 						<span>'.$osztaly["osztaly"].'</span>
-					</div>
-				</div>
-			</div>
+					</div>';
+				}
+	$infokiir .= '</div>
 		</div>
 	</div>';
 	echo $infokiir;
