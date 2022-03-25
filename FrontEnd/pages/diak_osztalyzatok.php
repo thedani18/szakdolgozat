@@ -1,5 +1,40 @@
 <?php
 
+function Atlag($jegyek)
+{
+    $sum = 0;
+    for ($i=0; $i < count($jegyek); $i++) { 
+        $sum += $jegyek[$i]["jegy"] * $jegyek[$i]["suly"];
+    }
+    return ($sum / count($jegyek));
+}
+
+function Tmain($honap,$megnevezes)
+{
+    $begin = MyDate($honap)["begin"];
+    $end = MyDate($honap)["end"];
+    $jegyek = Jegyek($_SESSION["login"],$megnevezes,$begin,$end);
+    $tmain =
+    '<tr id="tmain">
+        <td id="honap">'.MyDate($honap)["month"].'</td>
+        <td id="jegyek">';
+            if ($jegyek != null) {
+                for ($j=0; $j < count($jegyek); $j++) { 
+                    $tmain .= $jegyek[$j]["jegy"];
+                }
+            }
+    $tmain .=
+        '</td>
+        <td id="atlag">';
+        if ($jegyek != null) {
+            $tmain .= Atlag($jegyek);
+        }
+    $tmain .=
+        '</td>
+    </tr>';
+    return $tmain;
+}
+
 $tantargyak = Tantargyak($_SESSION["login"]);
 for ($i=0; $i < count($tantargyak); $i++) { 
     echo "<table id='tables'>";
@@ -9,156 +44,22 @@ for ($i=0; $i < count($tantargyak); $i++) {
             echo "</th>";
         echo "</tr>";
     echo "</table>";
-
     echo '<table id="'.$tantargyak[$i]["megnevezes"].'" style="display: none;">';
         echo '<tr id="tbar">';
             echo '<td id="honap">Hónap</td>';
             echo '<td id="jegyek"></td>';   
             echo '<td id="atlag">Átlag</td>';
         echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">szeptember</td>';
-            echo '<td id="jegyek">';
-                $begin = (date("Y")-1)."-09-01";
-                $end = (date("Y")-1)."-09-30";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">október</td>';
-            echo '<td id="jegyek">';
-                $begin = (date("Y")-1)."-10-01";
-                $end = (date("Y")-1)."-10-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">november</td>';
-            echo '<td id="jegyek">';
-                $begin = (date("Y")-1)."-11-01";
-                $end = (date("Y")-1)."-11-30";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">december</td>';
-            echo '<td id="jegyek">';
-                $begin = (date("Y")-1)."-12-01";
-                $end = (date("Y")-1)."-12-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">január</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-01-01";
-                $end = date("Y")."-01-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">február</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-02-01";
-                if (date("Y") % 4 == 0)
-                    $end = date("Y")."-02-29";
-                else
-                    $end = date("Y")."-02-28";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">március</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-03-01";
-                $end = date("Y")."-03-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">április</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-04-01";
-                $end = date("Y")."-04-30";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">május</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-05-01";
-                $end = date("Y")."-05-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
-        echo '<tr id="tmain">';
-            echo '<td id="honap">június</td>';
-            echo '<td id="jegyek">';
-                $begin = date("Y")."-06-01";
-                $end = date("Y")."-06-31";
-                $jegyek = Jegyek($_SESSION["login"],$tantargyak[$i]["megnevezes"],$begin,$end);
-                if ($jegyek != null) {
-                    for ($j=0; $j < count($jegyek); $j++) { 
-                        echo $jegyek[$j]["jegy"];
-                    }
-                }
-            echo '</td>';
-            echo '<td id="atlag">3,2</td>';
-        echo '</tr>';
+        echo Tmain(9,$tantargyak[$i]["megnevezes"]); //Szeptember
+        echo Tmain(10,$tantargyak[$i]["megnevezes"]); //Október
+        echo Tmain(11,$tantargyak[$i]["megnevezes"]); //November
+        echo Tmain(12,$tantargyak[$i]["megnevezes"]); //December
+        echo Tmain(1,$tantargyak[$i]["megnevezes"]); //Január
+        echo Tmain(2,$tantargyak[$i]["megnevezes"]); //Február
+        echo Tmain(3,$tantargyak[$i]["megnevezes"]); //Március
+        echo Tmain(4,$tantargyak[$i]["megnevezes"]); //Április
+        echo Tmain(5,$tantargyak[$i]["megnevezes"]); //Május
+        echo Tmain(6,$tantargyak[$i]["megnevezes"]); //Június
     echo '</table>';
 }
 

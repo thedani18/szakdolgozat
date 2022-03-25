@@ -152,7 +152,7 @@ function Tantargyak($id)
 function Jegyek($id,$tantargy,$begin,$end)
 {
     $sql =
-    "SELECT jegy
+    "SELECT jegy, tipusId
     FROM szd_beiras
     INNER JOIN szd_tantargy ON szd_beiras.tantargyId = szd_tantargy.tantargyId
     INNER JOIN szd_felhasznalo ON szd_beiras.diakId = szd_felhasznalo.felhId
@@ -165,6 +165,7 @@ function Jegyek($id,$tantargy,$begin,$end)
         while ($row = $result->fetch_assoc()) 
         {
             $list[$n]["jegy"] = $row["jegy"];
+            $list[$n]["suly"] = $row["tipusId"];
             $n++;
         }
     }

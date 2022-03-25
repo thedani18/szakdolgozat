@@ -8,7 +8,7 @@
 	<link rel='stylesheet' href='./FrontEnd/css/login.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/nav.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/table.css' />
-	<script type="text/javascript" src="./FrontEnd/js/visible.js"></script>
+	<script type="text/javascript" src="./FrontEnd/functions/functions.js"></script>
 	<title>E-Penna</title>
 </head>
 
