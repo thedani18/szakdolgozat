@@ -149,11 +149,28 @@ function Tantargyak($id)
     return $list;
 }
 
+function Tanar($id)
+{
+    $sql = "SELECT CONCAT(csaladnev,' ',utonev) AS 'tanarnev' FROM szd_felhasznalo WHERE felhId = $id";
+    $result=connect()->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $info = $row["tanarnev"];
+    }
+    else {
+        $info = null;
+    }
+
+    connect()->close();
+    return $info;
+}
+
 function Jegyek($id,$tantargy,$begin,$end)
 {
     $sql =
-    "SELECT jegy, tipusId
+    "SELECT jegy, szd_beiras.tipusId AS 'tipusId', datum, tema, suly, tanarId
     FROM szd_beiras
+    INNER JOIN szd_jegytipus ON szd_beiras.tipusId = szd_jegytipus.tipusId
     INNER JOIN szd_tantargy ON szd_beiras.tantargyId = szd_tantargy.tantargyId
     INNER JOIN szd_felhasznalo ON szd_beiras.diakId = szd_felhasznalo.felhId
     WHERE felhId = $id
@@ -166,6 +183,10 @@ function Jegyek($id,$tantargy,$begin,$end)
         {
             $list[$n]["jegy"] = $row["jegy"];
             $list[$n]["suly"] = $row["tipusId"];
+            $list[$n]["datum"] = $row["datum"];
+            $list[$n]["tema"] = $row["tema"];
+            $list[$n]["sulym"] = $row["suly"];
+            $list[$n]["tanarnev"] = Tanar($row["tanarId"]);
             $n++;
         }
     }

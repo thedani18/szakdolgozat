@@ -1,14 +1,14 @@
 <?php
 
-//TODO átírni showos megoldásra és úgy megcsinálni, ha másikra nyom rá akkor bezárja a többit
-
 function Atlag($jegyek)
 {
     $sum = 0;
+    $db = 0;
     for ($i=0; $i < count($jegyek); $i++) { 
         $sum += $jegyek[$i]["jegy"] * $jegyek[$i]["suly"];
+        $db += 1 * $jegyek[$i]["suly"];
     }
-    return ($sum / count($jegyek));
+    return (number_format(($sum / $db),2));
 }
 
 function Tmain($honap,$megnevezes)
@@ -21,8 +21,22 @@ function Tmain($honap,$megnevezes)
         <td id="honap">'.MyDate($honap)["month"].'</td>
         <td id="jegyek">';
             if ($jegyek != null) {
-                for ($j=0; $j < count($jegyek); $j++) { 
-                    $tmain .= $jegyek[$j]["jegy"];
+                for ($j=0; $j < count($jegyek); $j++) {
+                    $tmain .= '<span class="jegy">';
+                    if ($j != count($jegyek)-1) {$tmain .= "<span>".$jegyek[$j]["jegy"].",</span>";}
+                    else {$tmain .= "<span>".$jegyek[$j]["jegy"]."</span>";}
+                        $tmain .= '<div class="tooltip">
+                            <div class="tooltip-jegy">'
+                                .$jegyek[$j]["jegy"].
+                            '</div>
+                            <div class="tooltip-info">
+                                <p>'.$jegyek[$j]["datum"].'</p>
+                                <p>Téma: '.$jegyek[$j]["tema"].'</p>
+                                <p>Súly: '.$jegyek[$j]["sulym"].'</p>
+                                <p>'.$jegyek[$j]["tanarnev"].'</p>
+                            </div>
+                        </div>
+                    </span>';
                 }
             }
     $tmain .=

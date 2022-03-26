@@ -8,6 +8,7 @@
 	<link rel='stylesheet' href='./FrontEnd/css/login.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/nav.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/table.css' />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="./FrontEnd/functions/functions.js"></script>
 	<title>E-Penna</title>
 </head>

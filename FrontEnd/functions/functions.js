@@ -1,3 +1,9 @@
+$(document).ready(function(){
+    $('.jegy').hover(function() {
+        $(this).children().toggleClass("tshow");
+    });
+});
+
 function InfoDropdown() {
     document.getElementById("dropdown").classList.toggle("show");
 }
@@ -82,7 +88,6 @@ function MenuSwap(bg) {
 }
 
 function Open(parent,child) {
-    
     var elems = document.querySelectorAll(".active");
     [].forEach.call(elems, function(el) {
         if (el != document.getElementById(child)) {
