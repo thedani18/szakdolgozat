@@ -83,13 +83,6 @@ td {
     min-width: 120px;
 }
 
-tr:last-child td:first-child{
-    border-bottom-left-radius: 10px;
-}
-tr:last-child td:last-child{
-    border-bottom-right-radius: 10px;
-}
-
 .jegy {
     display: inline-block;
 }
@@ -165,5 +158,13 @@ tr:last-child td:last-child{
     }
     .collapse {
         width: 100%;
+    }
+    #tnev{
+        min-width: 0px;
+    }
+    
+    #tatlag{
+        min-width: 0px;
+        position: static;
     }
 }
