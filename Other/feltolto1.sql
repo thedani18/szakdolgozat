@@ -23,10 +23,10 @@ INSERT INTO szd_felhasznalo (felhnev, salt, jelszo, jogId, csaladnev, utonev, sz
 ('diak14','$6$$ZVXA/MEPtEcnviwdSMaPzuju0z8S3xMSGi.k8/CrbrLMX9b2p6C0xNNAGTFdI9gNX5gjyU1Z/Q.Ob/mlAFAjw0','$6$$KRIKNdNFwVF4A57V/yVn80rUyCMFhY3VdVi2Mf2CNfhi3ApH/lB/zZ5bA4Yt8ybsVPwAqsz2bQ1cm0w55a.gz1',1,'Diák','Benedek','2009-11-19','Budapest'),
 ('diak15','$6$$YhjrbwXlvNos199Y/u3oPO/0i8YTHTlZrWO6R7MViho6M75F1Tc2sFd1hsh9agpnUfrXyVxk.YN5P3TkTUl531','$6$$BizQ.b3N7sVBcrRje9XQ.T7ll4tVNwCWEh8JNFW0M08jiadA/teZsrkceWBchPCTTcUr364pD/zlLxsN2G5go.',1,'Diák','Zoltán','2008-07-10','Budapest');
 
-INSERT INTO szd_osztaly (megnevezes, ofId) VALUES
-('12.c',2),
-('11.d',3),
-('9.a',4);
+INSERT INTO szd_osztaly (megnevezeselo, megnevezesuto, ofId) VALUES
+(12,'c',2),
+(11,'d',3),
+(9,'a',4);
 
 INSERT INTO szd_diakosztaly (osztalyId, diakId) VALUES
 (1,5),

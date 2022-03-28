@@ -41,7 +41,7 @@ function Tmain($honap,$megnevezes)
             }
     $tmain .=
         '</td>
-        <td id="atlag">';
+        <td id="tatlag">';
         if ($jegyek != null) {
             $tmain .= Atlag($jegyek);
         }
@@ -65,7 +65,7 @@ for ($i=0; $i < count($tantargyak); $i++) {
             echo '<tr id="tbar">';
                 echo '<td id="honap">Hónap</td>';
                 echo '<td id="jegyek"></td>';   
-                echo '<td id="atlag">Átlag</td>';
+                echo '<td id="tatlag">Átlag</td>';
             echo '</tr>';
             echo Tmain(9,$tantargyak[$i]["megnevezes"]); //Szeptember
             echo Tmain(10,$tantargyak[$i]["megnevezes"]); //Október

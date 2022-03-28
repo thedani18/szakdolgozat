@@ -203,6 +203,10 @@ nav .menu_coll {
     margin: 20px;
 }
 
+.nevezes {
+    min-width: 200px;
+}
+
 .show {
     display: block !important;
 }

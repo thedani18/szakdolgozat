@@ -18,7 +18,8 @@ CREATE TABLE szd_felhasznalo (
 
 CREATE TABLE szd_osztaly (
 	osztalyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    megnevezes VARCHAR(6) NOT NULL,
+    megnevezeselo INT NOT NULL,
+    megnevezesuto VARCHAR(3) NOT NULL,
     ofId INT NOT NULL, -- szd_Felhasznalo
     FOREIGN KEY (ofId) REFERENCES szd_felhasznalo(felhId)
 );

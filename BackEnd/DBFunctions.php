@@ -83,14 +83,15 @@ function User($id)
 function Osztalyfonok($id)
 {
     $sql = 
-    "SELECT megnevezes, csaladnev, utonev 
+    "SELECT megnevezeselo, megnevezesuto, csaladnev, utonev 
     FROM szd_osztaly
     INNER JOIN szd_felhasznalo ON szd_osztaly.ofId = szd_felhasznalo.felhId
     WHERE osztalyId = ".Osztaly($id).";";
     $result=connect()->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $info["osztaly"] = $row["megnevezes"];
+        $info["osztalyelo"] = $row["megnevezeselo"];
+        $info["osztalyuto"] = $row["megnevezesuto"];
         $info["tcsaladnev"] = $row["csaladnev"];
         $info["tutonev"] = $row["utonev"];
     }
@@ -187,6 +188,61 @@ function Jegyek($id,$tantargy,$begin,$end)
             $list[$n]["tema"] = $row["tema"];
             $list[$n]["sulym"] = $row["suly"];
             $list[$n]["tanarnev"] = Tanar($row["tanarId"]);
+            $n++;
+        }
+    }
+    else {
+        $list = null;
+    }
+    connect()->close();
+    return $list;
+}
+
+function TanarOsztalyok($id)
+{
+    $sql =
+    "SELECT szd_osztaly.osztalyId AS 'osztalyId', megnevezeselo, megnevezesuto, megnevezes
+    FROM szd_felhasznalo
+    INNER JOIN szd_tgytr ON szd_felhasznalo.felhId = szd_tgytr.tanarId
+    INNER JOIN szd_oszttgytr ON szd_tgytr.TTId = szd_oszttgytr.TTId
+    INNER JOIN szd_osztaly ON szd_oszttgytr.osztalyId = szd_osztaly.osztalyId
+    INNER JOIN szd_tantargy ON szd_tgytr.tantargyId = szd_tantargy.tantargyId
+    WHERE szd_felhasznalo.felhId = $id
+    ORDER BY szd_osztaly.megnevezeselo ASC;";
+    $result=connect()->query($sql);
+    if($result->num_rows >0) {
+        $n = 0;
+        while ($row = $result->fetch_assoc()) 
+        {
+            $list[$n]["osztalyId"] = $row["osztalyId"];
+            $list[$n]["osztalyelo"] = $row["megnevezeselo"];
+            $list[$n]["osztalyuto"] = $row["megnevezesuto"];
+            $list[$n]["tantargy"] = $row["megnevezes"];
+            $n++;
+        }
+    }
+    else {
+        $list = null;
+    }
+    connect()->close();
+    return $list;
+}
+
+function Diakok($osztalyid)
+{
+    $sql = 
+    "SELECT felhId, csaladnev, utonev
+    FROM szd_felhasznalo
+    INNER JOIN szd_diakosztaly ON szd_felhasznalo.felhId = szd_diakosztaly.diakId
+    WHERE szd_diakosztaly.osztalyId = $osztalyid;";
+    $result=connect()->query($sql);
+    if($result->num_rows >0) {
+        $n = 0;
+        while ($row = $result->fetch_assoc()) 
+        {
+            $list[$n]["id"] = $row["felhId"];
+            $list[$n]["csaladnev"] = $row["csaladnev"];
+            $list[$n]["utonev"] = $row["utonev"];
             $n++;
         }
     }
