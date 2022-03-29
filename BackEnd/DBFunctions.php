@@ -252,4 +252,36 @@ function Diakok($osztalyid)
     connect()->close();
     return $list;
 }
+
+function TAtlag($id,$tantargy)
+{
+    $sql = 
+    "SELECT jegy, tipusId 
+    FROM szd_beiras
+    INNER JOIN szd_tantargy ON szd_beiras.tantargyId = szd_tantargy.tantargyId
+    WHERE diakID = $id
+    AND szd_tantargy.megnevezes LIKE '$tantargy';";
+    $result=connect()->query($sql);
+    $sum = 0;
+    $db = 0;
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) 
+        {
+            $sum += $row["jegy"]*$row["tipusId"];
+            $db += 1*$row["tipusId"];
+        }
+    }
+    else {
+        $sum = null;
+    }
+
+    connect()->close();
+    if ($sum != null) {
+        return number_format(($sum / $db),2);
+    }
+    else {
+        return "";
+    }
+}
+
 ?>

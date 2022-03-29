@@ -37,7 +37,10 @@ function Tmain($osztalyid,$tantargy)
             $tmain .= Honap($diakok[$i]["id"],5,$tantargy);
             $tmain .= Honap($diakok[$i]["id"],6,$tantargy);
             $tmain .='<td id="tatlag">';
-                    $tmain .= "Átlág";
+                $atlag = TAtlag($diakok[$i]["id"],$tantargy);
+                if ($atlag != null) {
+                    $tmain .= $atlag;
+                }
             $tmain .= '</td>';
         $tmain .= '</tr>';
     }
