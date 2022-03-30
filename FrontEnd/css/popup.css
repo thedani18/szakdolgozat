@@ -1,0 +1,85 @@
+/* The Modal (background) */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+  /* Modal Content */
+.popup-content {
+    border-radius: 15px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    width: 80%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.mod-header {
+    background-color: var(--maincolor);
+    height: 40px;
+    line-height: 40px;
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: center;
+}
+
+.mod-content {
+    padding: 10px;
+}
+
+#popup_table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+}
+
+#plusz {
+    height: 30px;
+    width: auto;
+    cursor: pointer;
+}
+
+.ceruza {
+    cursor: pointer;
+}
+
+.ceruza img{
+    height: 25px;
+    width: auto;
+}
+
+.kuka {
+    cursor: pointer;
+}
+
+.kuka img{
+    height: 25px;
+    width: auto;
+}
+
+#popup_table input[type=text]{
+	width: 100%;
+    padding: 12px 10px;
+    margin: 0;  
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#popup_table input[type=text]:focus, #popup_table input[type=text]:hover {
+    border: none;
+}

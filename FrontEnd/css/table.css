@@ -9,15 +9,12 @@ table {
 #tables {
     width: 75%;
     margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 table td {
     background-color: white;
-}
-
-#tables {
-    margin-top: 10px;
-    border-radius: 10px;
 }
 
 th {
@@ -40,11 +37,19 @@ th {
     padding: 15px;
     cursor: pointer;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
-td {
+td{
     color: var(--maincolor);
     border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.ttables th {
+    background-color: white;
+    color: var(--maincolor);
+    border: 1px solid #ddd; 
     padding: 15px;
 }
 
@@ -79,7 +84,7 @@ td {
     right: 0;
 }
 
-#tjegy {
+#tjegy, .tjegy{
     min-width: 120px;
 }
 
@@ -115,6 +120,13 @@ td {
     padding-left: 5px;
     float: left;
     border-left: 2px solid #00bda5;
+}
+
+#modtantargy {
+    float: left;
+    vertical-align: middle;
+    color: var(--altcolor);
+    font-size: 20px;
 }
 
 .tshow {

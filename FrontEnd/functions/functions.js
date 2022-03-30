@@ -1,7 +1,49 @@
-$(document).ready(function(){
+$(document).ready(function() {
     $('.jegy').hover(function() {
         $(this).children().toggleClass("tshow");
     });
+
+    $(".tjegy").click(function() {
+        $("#modtantargy").text($(this).parent().parent().parent().parent().attr("tantargy"));
+        var index = $(this).parent().children().index($(this));
+        var honap = $("#tbar").children(":eq("+index+")").text();
+        $("#modnev").text($(this).parent().find("#tnev").text()+" - "+honap);
+        $('#popup_table tr').slice(1).remove();
+        if($(this).attr("jegyid") != "")
+        {
+            var list = $(this).attr("jegyid").split(",");
+            $.each( list, function( index, value ) {
+                $.ajax({
+                    type: "POST",
+                    url: './BackEnd/Jegyekdb.php',
+                    data: {id: value},
+                    success: function(response)
+                    {
+                        var lista = $.parseJSON(response);
+                        
+                        $("#popup_table").append(
+                            "<tr bid='"+value+"'>" +
+                            "<td><input type='text' name='jegy' id='jegy' value='"+lista[0]+"' disabled></td>" +
+                            "<td><input type='text' name='tema' id='tema' value='"+lista[1]+"' disabled></td>" +
+                            "<td><input type='text' name='suly' id='suly' value='"+lista[2]+"' disabled></td>" +
+                            "<td><input type='text' name='datum' id='datum  ' value='"+lista[3]+"' disabled></td>" +
+                            "<td class='ceruza'><img src='./FrontEnd/img/ceruza.png' alt='ceruza.png'></td>" +
+                            "<td class='kuka'><img src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
+                            "</tr>"
+                        );
+                    }
+                });
+            });
+        }
+        document.getElementById("myPopup").classList.toggle("show");
+    });
+
+    $(".ceruza").click(function() {
+        alert("asds");
+        /*$(this).parent().find('input').each(function() {
+            alert($(this).text());
+        })*/
+    }); 
 });
 
 function InfoDropdown() {
@@ -29,10 +71,24 @@ window.onclick = function(event) {
             }
         }
     }
+    if (event.target.matches('.popup')) {
+        var dropdowns = document.getElementsByClassName("popup");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 }
 
 function Info() {
     document.getElementById("myModal").classList.toggle("show");
+}
+
+function Close() {
+    document.getElementById("myPopup").classList.toggle("show");
 }
 
 function Timer(expire) {

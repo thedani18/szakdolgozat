@@ -2,7 +2,7 @@
 	<div id='row'>
 		<div id='login_col1'>
         <div class="login">
-            <h1>E-Penna</h1>
+            <img src="./FrontEnd/img/e-penna_logo.png" alt="E-Penna" style="height: 200px; width: auto;">
             <div class="login_all">
                 <div class="login_head"></div>
                 <div class="login_main">

@@ -19,6 +19,7 @@
     width: 60%;
     border: 3px black;
 	margin: auto;
+    text-align: center;
 }
 .login h1{
     text-align: center;

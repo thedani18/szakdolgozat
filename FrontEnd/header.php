@@ -3,11 +3,13 @@
 <head>
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+	<link rel = "icon" href = "./FrontEnd/img/e-penna_logo_ikon.png" type = "image/x-icon">
 	<link rel='stylesheet' href='./FrontEnd/css/mystyle.css' />
-	<link rel='stylesheet' href='./FrontEnd/css/bg.css' />
+	<link rel='stylesheet' href='./FrontEnd/css/bg.css' />	
 	<link rel='stylesheet' href='./FrontEnd/css/login.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/nav.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/table.css' />
+	<link rel='stylesheet' href='./FrontEnd/css/popup.css' />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="./FrontEnd/functions/functions.js"></script>
 	<title>E-Penna</title>
@@ -59,6 +61,7 @@ if (isset($_SESSION["login"])) {
 				<div id="menu">';
 					if ($_SESSION["jogosultsag"] == "tanar") {
 						echo '<a name="szoveg" href="./?p=osztalyzatok">Tanár</a>';
+						echo '<a name="szoveg" href="./?p=teszt">Tanár</a>';
 					}
 					elseif ($_SESSION["jogosultsag"] == "diak") {
 						echo '<a name="szoveg" href="./?p=osztalyzatok">Diák</a>';
@@ -78,11 +81,11 @@ if (isset($_SESSION["login"])) {
 			</div>
 			<div class="info-content">
 				<div class="row">
-					<span class="nevezes">családnév:</span>
+					<span class="nevezes">Családnév:</span>
 					<span>'.$user["csaladnev"].'</span>
 				</div>
 				<div class="row">
-					<span class="nevezes">utónév:</span>
+					<span class="nevezes">Utónév:</span>
 					<span>'.$user["utonev"].'</span>
 				</div>
 				<div class="row">
@@ -101,7 +104,7 @@ if (isset($_SESSION["login"])) {
 					</div>
 					<div class="row">
 						<span class="nevezes">Osztály:</span>
-						<span>'.$osztaly["osztalyelo"].'.'.$osztaly["osztalyuto"].'</span>
+						<span>'.$osztaly["osztalyelo"].'. '.$osztaly["osztalyuto"].'</span>
 					</div>';
 				}
 	$infokiir .= '</div>
