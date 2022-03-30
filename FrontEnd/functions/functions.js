@@ -15,7 +15,7 @@ $(document).ready(function() {
             $.each( list, function( index, value ) {
                 $.ajax({
                     type: "POST",
-                    url: './BackEnd/Jegyekdb.php',
+                    url: './BackEnd/Jegyekdb.php',  
                     data: {id: value},
                     success: function(response)
                     {
@@ -23,11 +23,14 @@ $(document).ready(function() {
                         
                         $("#popup_table").append(
                             "<tr bid='"+value+"'>" +
-                            "<td><input type='text' name='jegy' id='jegy' value='"+lista[0]+"' disabled></td>" +
-                            "<td><input type='text' name='tema' id='tema' value='"+lista[1]+"' disabled></td>" +
-                            "<td><input type='text' name='suly' id='suly' value='"+lista[2]+"' disabled></td>" +
-                            "<td><input type='text' name='datum' id='datum  ' value='"+lista[3]+"' disabled></td>" +
-                            "<td class='ceruza'><img src='./FrontEnd/img/ceruza.png' alt='ceruza.png'></td>" +
+                            "<td id='pop_jegy'><input type='text' name='jegy' value='"+lista[0]+"' disabled='true'></td>" +
+                            "<td id='pop_tema'><input type='text' name='tema' value='"+lista[1]+"' disabled='true'></td>" +
+                            "<td id='pop_suly'><input type='text' name='suly' value='"+lista[2]+"' disabled='true'></td>" +
+                            "<td id='pop_datum'><input type='text' name='datum' value='"+lista[3]+"' disabled='true'></td>" +
+                            "<td class='modositas'>" +
+                                "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
+                                "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
+                            "</td>" +
                             "<td class='kuka'><img src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
                             "</tr>"
                         );
@@ -38,12 +41,16 @@ $(document).ready(function() {
         document.getElementById("myPopup").classList.toggle("show");
     });
 
-    $(".ceruza").click(function() {
-        alert("asds");
-        /*$(this).parent().find('input').each(function() {
-            alert($(this).text());
-        })*/
-    }); 
+    $("body").on('click', '.modositas', function() {
+        if (!($(this).parent().hasClass("editable"))) {
+            $(this).parent().addClass("editable");
+            $(".editable input").prop( "disabled", false )
+        }
+        else {
+            $(".editable input").prop( "disabled", true )
+            $(this).parent().removeClass("editable");
+        }
+    });
 });
 
 function InfoDropdown() {

@@ -49,19 +49,55 @@
     height: 30px;
     width: auto;
     cursor: pointer;
+}   
+
+#pop_jegy {
+    min-width: 30px;
 }
 
-.ceruza {
+#pop_tema {
+    min-width: 300px;
+}
+
+#pop_suly {
+    min-width: 80px;
+}
+
+#pop_datum {
+    min-width: 130px;
+}
+
+.modositas {
     cursor: pointer;
+    position: sticky;
+    z-index: 10;
+    right: 57px;
 }
 
-.ceruza img{
+#ceruza {
     height: 25px;
     width: auto;
 }
 
+#pipa {
+    height: 25px;
+    width: auto;
+    display: none;
+}
+
+.editable #ceruza {
+    display: none;
+}
+
+.editable #pipa {
+    display: block;
+}
+
 .kuka {
     cursor: pointer;
+    position: sticky;
+    z-index: 10;
+    right: 0;
 }
 
 .kuka img{

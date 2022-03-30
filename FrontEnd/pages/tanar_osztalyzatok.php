@@ -92,12 +92,14 @@ for ($i=0; $i < count($osztalyok); $i++) {
 			<span class="close" onclick="Close()">&times;</span>
 		</div>
         <div class="mod-content">
-            <table id="popup_table">
-                <tr>
-                    <th id="modnev" style="text-align:left;" colspan="5">Tanuló neve - Hónap</th>
-                    <th><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></th>
-                </tr>
-            </table>
+            <div style="overflow-x: auto;">
+                <table id="popup_table">
+                    <tr>
+                        <th id="modnev" style="text-align:left;" colspan="5">Tanuló neve - Hónap</th>
+                        <th><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></th>
+                    </tr>
+                </table>
+            </div>
         </div>
 	</div>
 </div>

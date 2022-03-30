@@ -209,7 +209,7 @@ function TanarOsztalyok($id)
     INNER JOIN szd_osztaly ON szd_oszttgytr.osztalyId = szd_osztaly.osztalyId
     INNER JOIN szd_tantargy ON szd_tgytr.tantargyId = szd_tantargy.tantargyId
     WHERE szd_felhasznalo.felhId = $id
-    ORDER BY szd_osztaly.megnevezeselo ASC;";
+    ORDER BY szd_osztaly.megnevezeselo, szd_osztaly.megnevezesuto, szd_tantargy.tantargyId ASC;";
     $result=connect()->query($sql);
     if($result->num_rows >0) {
         $n = 0;
