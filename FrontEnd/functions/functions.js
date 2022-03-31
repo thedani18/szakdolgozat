@@ -76,22 +76,24 @@ $(document).ready(function() {
                         });
                         var mydate = moment($(".editable #pop_datum input").val(), "YYYY-MM-DD").toDate();
                         if (mydate >= begin && mydate <= end) {
-                            $.ajax({
-                                type: "POST",
-                                url: "./BackEnd/ajax.php",
-                                data: {
-                                    bid: $(this).parent().attr("bid"),
-                                    bjegy: $(".editable #pop_jegy input").val(),
-                                    btema: $(".editable #pop_tema input").val(),
-                                    bsuly: $(".editable #pop_suly input").val(),
-                                    bdatum: $(".editable #pop_datum input").val()
-                                },
-                                success: function (response) {
-                                    alert("sikeres frissítés");
-                                    $(".editable input").prop( "disabled", true );
-                                    $(this).parent().removeClass("editable");
-                                }
-                            });
+                            if (confirm('biztos szeretnéd módosítani?')) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "./BackEnd/ajax.php",
+                                    data: {
+                                        bid: $(this).parent().attr("bid"),
+                                        bjegy: $(".editable #pop_jegy input").val(),
+                                        btema: $(".editable #pop_tema input").val(),
+                                        bsuly: $(".editable #pop_suly input").val(),
+                                        bdatum: $(".editable #pop_datum input").val()
+                                    },
+                                    success: function (response) {
+                                        alert("sikeres frissítés");
+                                        $(".editable input").prop( "disabled", true );
+                                        $(this).parent().removeClass("editable");
+                                    }
+                                });
+                            }
                         }
                         else {  
                             alert("Csak az adott év, "+honap+". hónapjában módosíthatod!");
