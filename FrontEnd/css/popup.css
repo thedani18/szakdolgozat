@@ -36,6 +36,39 @@
     padding: 10px;
 }
 
+.modhead {
+    height: 50px;
+    padding: 0 10px;
+    display: flex;
+    flex: 2;
+}
+
+#modnev {
+    flex: 1 1;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: var(--maincolor);
+}
+
+#modinsert {
+    flex: 0 1;   
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#plusz {
+    height: 35px;
+    width: auto;
+    cursor: pointer;
+}  
+
+.modmain {
+    overflow-x: auto;
+}
+
 #popup_table {
     border-collapse: separate !important;
     border-spacing: 0 !important;
@@ -44,12 +77,6 @@
     border-radius: 0 !important;
     width: 100% !important;
 }
-
-#plusz {
-    height: 30px;
-    width: auto;
-    cursor: pointer;
-}   
 
 #pop_jegy {
     min-width: 30px;
@@ -93,14 +120,14 @@
     display: block;
 }
 
-.kuka {
+.torles {
     cursor: pointer;
     position: sticky;
     z-index: 10;
     right: 0;
 }
 
-.kuka img{
+#kuka{
     height: 25px;
     width: auto;
 }
@@ -117,5 +144,12 @@
 }
 
 #popup_table input[type=text]:focus, #popup_table input[type=text]:hover {
-    border: none;
+    outline: none;
+}
+
+@media screen and (max-width:850px)
+{
+    .popup-content {
+        width: 100%;
+    }
 }

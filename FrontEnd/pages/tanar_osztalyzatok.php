@@ -67,16 +67,16 @@ for ($i=0; $i < count($osztalyok); $i++) {
         echo '<table class="ttables">';
             echo '<tr id="tbar">';
                 echo '<th id="tnev">Név</th>';
-                echo '<th id="tjegy">Szeptember</th>';
-                echo '<th id="tjegy">Október</th>'; 
-                echo '<th id="tjegy">November</th>'; 
-                echo '<th id="tjegy">December</th>'; 
-                echo '<th id="tjegy">Január</th>'; 
-                echo '<th id="tjegy">Február</th>'; 
-                echo '<th id="tjegy">Március</th>'; 
-                echo '<th id="tjegy">Április</th>'; 
-                echo '<th id="tjegy">Május</th>';
-                echo '<th id="tjegy">Június</th>';
+                echo '<th id="tjegy" honap="9">Szeptember</th>';
+                echo '<th id="tjegy" honap="10">Október</th>'; 
+                echo '<th id="tjegy" honap="11">November</th>';
+                echo '<th id="tjegy" honap="12">December</th>'; 
+                echo '<th id="tjegy" honap="1">Január</th>'; 
+                echo '<th id="tjegy" honap="2">Február</th>'; 
+                echo '<th id="tjegy" honap="3">Március</th>'; 
+                echo '<th id="tjegy" honap="4">Április</th>'; 
+                echo '<th id="tjegy" honap="5">Május</th>';
+                echo '<th id="tjegy" honap="6">Június</th>';
                 echo '<th id="tatlag">Átlag</th>';
             echo '</tr>';
             echo Tmain($osztalyok[$i]["osztalyId"],$osztalyok[$i]["tantargy"]);
@@ -91,13 +91,21 @@ for ($i=0; $i < count($osztalyok); $i++) {
             <span id="modtantargy">Tantárgy</span>
 			<span class="close" onclick="Close()">&times;</span>
 		</div>
-        <div class="mod-content">
-            <div style="overflow-x: auto;">
+        <div class="mod-content" honap="">
+            <div class="modhead">
+                <div id="modnev">Tanuló neve - Hónap</div>
+                <div id="modinsert"><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></div>
+            </div>
+            <div class="modmain">
                 <table id="popup_table">
-                    <tr>
-                        <th id="modnev" style="text-align:left;" colspan="5">Tanuló neve - Hónap</th>
-                        <th><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></th>
-                    </tr>
+                <tr>
+                    <td id='pop_jegy'>jegy</td>
+                    <td id='pop_tema'>téma</td>
+                    <td id='pop_suly'>súly</td>
+                    <td id='pop_datum'>dátum</td>
+                    <td class='modositas'></td>
+                    <td class='torles'></td>
+                </tr>
                 </table>
             </div>
         </div>

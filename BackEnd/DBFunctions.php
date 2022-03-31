@@ -176,7 +176,8 @@ function Jegyek($id,$tantargy,$begin,$end)
     INNER JOIN szd_felhasznalo ON szd_beiras.diakId = szd_felhasznalo.felhId
     WHERE felhId = $id
     AND megnevezes LIKE '$tantargy'
-    AND datum BETWEEN '$begin' AND '$end';";
+    AND datum BETWEEN '$begin' AND '$end'
+    ORDER BY szd_beiras.datum DESC;";
     $result=connect()->query($sql);
     if($result->num_rows >0) {
         $n = 0;

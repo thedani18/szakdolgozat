@@ -7,6 +7,7 @@ $(document).ready(function() {
         $("#modtantargy").text($(this).parent().parent().parent().parent().attr("tantargy"));
         var index = $(this).parent().children().index($(this));
         var honap = $("#tbar").children(":eq("+index+")").text();
+        $(".mod-content").attr({honap: $("#tbar").children(":eq("+index+")").attr("honap")});
         $("#modnev").text($(this).parent().find("#tnev").text()+" - "+honap);
         $('#popup_table tr').slice(1).remove();
         if($(this).attr("jegyid") != "")
@@ -15,12 +16,11 @@ $(document).ready(function() {
             $.each( list, function( index, value ) {
                 $.ajax({
                     type: "POST",
-                    url: './BackEnd/Jegyekdb.php',  
+                    url: './BackEnd/ajax.php',  
                     data: {id: value},
                     success: function(response)
                     {
                         var lista = $.parseJSON(response);
-                        
                         $("#popup_table").append(
                             "<tr bid='"+value+"'>" +
                             "<td id='pop_jegy'><input type='text' name='jegy' value='"+lista[0]+"' disabled='true'></td>" +
@@ -31,7 +31,7 @@ $(document).ready(function() {
                                 "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
                                 "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
                             "</td>" +
-                            "<td class='kuka'><img src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
+                            "<td class='torles'><img id='kuka' src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
                             "</tr>"
                         );
                     }
@@ -43,15 +43,92 @@ $(document).ready(function() {
 
     $("body").on('click', '.modositas', function() {
         if (!($(this).parent().hasClass("editable"))) {
+            //módosítás
+            var opened = document.querySelectorAll(".editable");
+            [].forEach.call(opened, function(x) {
+                if (x != $(this).attr("id")) {
+                    $(".editable input").prop( "disabled", true );
+                    x.classList.remove("editable");
+                }   
+            });
+
             $(this).parent().addClass("editable");
-            $(".editable input").prop( "disabled", false )
+            $(".editable input").prop( "disabled", false );
         }
         else {
-            $(".editable input").prop( "disabled", true )
-            $(this).parent().removeClass("editable");
+            //véglegesítés
+            if ($(".editable #pop_jegy input").val() > 0 && $(".editable #pop_jegy input").val() < 6) {
+                if ($.trim($(".editable #pop_tema input").val()).length <= 200) {
+                    if ($(".editable #pop_suly input").val() == "100%" ||  $(".editable #pop_suly input").val() == "200%" || $(".editable #pop_suly input").val() == "300%") {
+                        var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
+                        var begin;
+                        var end;
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "./FrontEnd/functions/ajax.php",
+                            data: {honap: honap},
+                            success: function (response) {
+                                var info = $.parseJSON(response);
+                                begin = moment(info["begin"], "YYYY-MM-DD").toDate();
+                                end = moment(info["end"], "YYYY-MM-DD").toDate();
+                            }
+                        });
+                        var mydate = moment($(".editable #pop_datum input").val(), "YYYY-MM-DD").toDate();
+                        if (mydate >= begin && mydate <= end) {
+                            $.ajax({
+                                type: "POST",
+                                url: "./BackEnd/ajax.php",
+                                data: {
+                                    bid: $(this).parent().attr("bid"),
+                                    bjegy: $(".editable #pop_jegy input").val(),
+                                    btema: $(".editable #pop_tema input").val(),
+                                    bsuly: $(".editable #pop_suly input").val(),
+                                    bdatum: $(".editable #pop_datum input").val()
+                                },
+                                success: function (response) {
+                                    alert("sikeres frissítés");
+                                    $(".editable input").prop( "disabled", true );
+                                    $(this).parent().removeClass("editable");
+                                }
+                            });
+                        }
+                        else {  
+                            alert("Csak az adott év, "+honap+". hónapjában módosíthatod!");
+                        }
+                    }
+                    else {
+                        alert("Nem létezik ilyen súlyozás!");
+                    }
+                }
+                else {
+                    alert("Túl hosszú a téma!");
+                }
+            }
+            else {
+                alert("Nem létezik ilyen jegy!");
+            }
         }
     });
-});
+
+    $("body").on('click', '.torles', function() {
+        if (confirm('biztos szeretnéd törölni?')) {
+            var tmp = $(this);
+            $.ajax({
+                type: "POST",
+                url: "./BackEnd/ajax.php",
+                data: {torlesid: $(this).parent().attr("bid")},
+                success: function (response) {
+                    tmp.parent().remove();
+                    alert("Törölted!");
+                }
+            });
+        }
+    });
+
+    //TODO újnál class létrehozás és akkor kuka nem elérhető
+    //és ha van más ilyen class akkor nem enged létre hozni még egyet
+}); 
 
 function InfoDropdown() {
     document.getElementById("dropdown").classList.toggle("show");
@@ -87,6 +164,7 @@ window.onclick = function(event) {
                 openDropdown.classList.remove('show');
             }
         }
+        location.reload(true);
     }
 }
 
@@ -96,6 +174,7 @@ function Info() {
 
 function Close() {
     document.getElementById("myPopup").classList.toggle("show");
+    location.reload(true);
 }
 
 function Timer(expire) {

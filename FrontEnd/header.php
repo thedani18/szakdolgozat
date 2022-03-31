@@ -11,6 +11,7 @@
 	<link rel='stylesheet' href='./FrontEnd/css/table.css' />
 	<link rel='stylesheet' href='./FrontEnd/css/popup.css' />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://momentjs.com/downloads/moment.js"></script>
 	<script type="text/javascript" src="./FrontEnd/functions/functions.js"></script>
 	<title>E-Penna</title>
 </head>
