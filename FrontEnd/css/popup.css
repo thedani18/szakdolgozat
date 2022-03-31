@@ -99,6 +99,7 @@
     position: sticky;
     z-index: 10;
     right: 57px;
+    min-width: 25px;
 }
 
 #ceruza {
@@ -125,6 +126,7 @@
     position: sticky;
     z-index: 10;
     right: 0;
+    min-width: 25px;
 }
 
 #kuka{
