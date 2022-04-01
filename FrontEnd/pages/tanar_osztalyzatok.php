@@ -91,7 +91,7 @@ for ($i=0; $i < count($osztalyok); $i++) {
             <span id="modtantargy">Tantárgy</span>
 			<span class="close" onclick="Close()">&times;</span>
 		</div>
-        <div class="mod-content" honap="">
+        <div class="mod-content" honap="" did="">
             <div class="modhead">
                 <div id="modnev">Tanuló neve - Hónap</div>
                 <div id="modinsert"><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></div>

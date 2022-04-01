@@ -7,10 +7,8 @@ $(document).ready(function() {
         $("#modtantargy").text($(this).parent().parent().parent().parent().attr("tantargy"));
         var index = $(this).parent().children().index($(this));
         var honap = $("#tbar").children(":eq("+index+")").text();
-        var index2 = $(this).parent().index()
-        var row = $("tr:eq("+index2+")").attr("did");
-        alert(row);
         $(".mod-content").attr({honap: $("#tbar").children(":eq("+index+")").attr("honap")});
+        $(".mod-content").attr({did: $(this).parent().find("#tnev").attr("did")});
         $("#modnev").text($(this).parent().find("#tnev").text()+" - "+honap);
         $('#popup_table tr').slice(1).remove();
         if($(this).attr("jegyid") != "")
