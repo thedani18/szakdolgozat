@@ -23,10 +23,10 @@ $(document).ready(function() {
                         var lista = $.parseJSON(response);
                         $("#popup_table").append(
                             "<tr bid='"+value+"'>" +
-                            "<td id='pop_jegy'><input type='text' name='jegy' value='"+lista[0]+"' disabled='true'></td>" +
-                            "<td id='pop_tema'><input type='text' name='tema' value='"+lista[1]+"' disabled='true'></td>" +
-                            "<td id='pop_suly'><input type='text' name='suly' value='"+lista[2]+"' disabled='true'></td>" +
-                            "<td id='pop_datum'><input type='text' name='datum' value='"+lista[3]+"' disabled='true'></td>" +
+                            "<td id='pop_jegy'><input type='text' name='jegy' value='"+lista[0]+"' title='1-5 lehet jegyeket beírni!' disabled='true'></td>" +
+                            "<td id='pop_tema'><input type='text' name='tema' value='"+lista[1]+"' title='témát lehet beírni maximum 200 karakterig!' disabled='true'></td>" +
+                            "<td id='pop_suly'><input type='text' name='suly' value='"+lista[2]+"' title='a jegy súlyozása (100%,200%,300%)!' disabled='true'></td>" +
+                            "<td id='pop_datum'><input type='text' name='datum' value='"+lista[3]+"' title='csak a nap módosítása lehetséges!' disabled='true'></td>" +
                             "<td class='modositas'>" +
                                 "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
                                 "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
@@ -61,22 +61,14 @@ $(document).ready(function() {
                 if ($.trim($(".editable #pop_tema input").val()).length <= 200) {
                     if ($(".editable #pop_suly input").val() == "100%" ||  $(".editable #pop_suly input").val() == "200%" || $(".editable #pop_suly input").val() == "300%") {
                         var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
-                        var begin;
-                        var end;
-                        $.ajax({
-                            async: false,
-                            type: "POST",
-                            url: "./FrontEnd/functions/ajax.php",
-                            data: {honap: honap},
-                            success: function (response) {
-                                var info = $.parseJSON(response);
-                                begin = moment(info["begin"], "YYYY-MM-DD").toDate();
-                                end = moment(info["end"], "YYYY-MM-DD").toDate();
-                            }
-                        });
+                        var datum = GetHonap(honap);
+                        alert(datum);
+                        var begin = moment(datum["begin"], "YYYY-MM-DD").toDate();
+                        var end = moment(datum["end"], "YYYY-MM-DD").toDate();
                         var mydate = moment($(".editable #pop_datum input").val(), "YYYY-MM-DD").toDate();
                         if (mydate >= begin && mydate <= end) {
                             if (confirm('biztos szeretnéd módosítani?')) {
+                                var tmp = $(this);
                                 $.ajax({
                                     type: "POST",
                                     url: "./BackEnd/ajax.php",
@@ -88,9 +80,8 @@ $(document).ready(function() {
                                         bdatum: $(".editable #pop_datum input").val()
                                     },
                                     success: function (response) {
-                                        alert("sikeres frissítés");
                                         $(".editable input").prop( "disabled", true );
-                                        $(this).parent().removeClass("editable");
+                                        $(tmp).parent().removeClass("editable");
                                     }
                                 });
                             }
@@ -122,15 +113,59 @@ $(document).ready(function() {
                 data: {torlesid: $(this).parent().attr("bid")},
                 success: function (response) {
                     tmp.parent().remove();
-                    alert("Törölted!");
                 }
             });
         }
     });
 
+    $("body").on('click', '#plusz', function () {
+        var honap = $(this).parent().parent().parent().attr("honap");
+        var datum = GetHonap(honap);
+        $("#popup_table").append(
+            "<tr bid='"+Last()+"'>" +
+            "<td id='pop_jegy'><input type='text' name='jegy' placeholder='4' title='1-5 lehet jegyeket beírni!'></td>" +
+            "<td id='pop_tema'><input type='text' name='tema' placeholder='téma' title='témát lehet beírni maximum 200 karakterig!'></td>" +
+            "<td id='pop_suly'><input type='text' name='suly' placeholder='100%' title='a jegy súlyozása (100%,200%,300%)!'></td>" +
+            "<td id='pop_datum'><input type='text' name='datum' placeholder='"+datum["begin"]+"' title='csak a nap módosítása lehetséges!'></td>" +
+            "<td class='modositas'>" +
+                "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
+                "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
+            "</td>" +
+            "<td class='torles'><img id='kuka' src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
+            "</tr>"
+        );
+    });
     //TODO újnál class létrehozás és akkor kuka nem elérhető
     //és ha van más ilyen class akkor nem enged létre hozni még egyet
 }); 
+
+function GetHonap(honap) {
+    var datum;
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "./FrontEnd/functions/ajax.php",
+        data: {honap: honap},
+        success: function (response) {
+            datum = response;
+        }
+    });
+    return datum;
+}
+
+function Last() {
+    var id;
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: './BackEnd/ajax.php',
+        data: {last: "igaz"},
+        success: function (response) {
+            id = response;
+        }
+    });
+    return id;
+}
 
 function InfoDropdown() {
     document.getElementById("dropdown").classList.toggle("show");

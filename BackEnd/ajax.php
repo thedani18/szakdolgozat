@@ -21,7 +21,6 @@ if (isset($_POST['id']) == true && empty($_POST['id']) == false) {
     echo json_encode($array);
 }
 
-
 if (isset($_POST['bid']) == true && empty($_POST['bid']) == false) {
     switch ($_POST['bsuly']) {
         case '100%':
@@ -57,4 +56,15 @@ if (isset($_POST['torlesid']) == true && empty($_POST['torlesid']) == false) {
 
     connect()->close();
     return $siker;
+}
+
+if (isset($_POST['last']) == true && empty($_POST['last']) == false) {
+    $sql =  "SELECT MAX(beirasId) as 'maxid' FROM szd_beiras;"; 
+    $result=connect()->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $id = $row["maxid"];
+    }
+    connect()->close();
+    echo json_encode($id);
 }
