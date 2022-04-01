@@ -30,7 +30,7 @@ function Tmain($osztalyid,$tantargy)
     for ($i=0; $i < count($diakok); $i++) {
         $tmain .=
         '<tr id="tmain">
-            <td id="tnev">'
+            <td id="tnev" did="'.$diakok[$i]["id"].'">'
                 .$diakok[$i]["csaladnev"]." ".$diakok[$i]["utonev"].
             '</td>';
             $tmain .= Honap($diakok[$i]["id"],9,$tantargy);

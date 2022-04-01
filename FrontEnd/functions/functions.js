@@ -7,6 +7,9 @@ $(document).ready(function() {
         $("#modtantargy").text($(this).parent().parent().parent().parent().attr("tantargy"));
         var index = $(this).parent().children().index($(this));
         var honap = $("#tbar").children(":eq("+index+")").text();
+        var index2 = $(this).parent().index()
+        var row = $("tr:eq("+index2+")").attr("did");
+        alert(row);
         $(".mod-content").attr({honap: $("#tbar").children(":eq("+index+")").attr("honap")});
         $("#modnev").text($(this).parent().find("#tnev").text()+" - "+honap);
         $('#popup_table tr').slice(1).remove();
@@ -56,50 +59,97 @@ $(document).ready(function() {
             $(".editable input").prop( "disabled", false );
         }
         else {
-            //véglegesítés
-            if ($(".editable #pop_jegy input").val() > 0 && $(".editable #pop_jegy input").val() < 6) {
-                if ($.trim($(".editable #pop_tema input").val()).length <= 200) {
-                    if ($(".editable #pop_suly input").val() == "100%" ||  $(".editable #pop_suly input").val() == "200%" || $(".editable #pop_suly input").val() == "300%") {
-                        var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
-                        var datum = GetHonap(honap);
-                        alert(datum);
-                        var begin = moment(datum["begin"], "YYYY-MM-DD").toDate();
-                        var end = moment(datum["end"], "YYYY-MM-DD").toDate();
-                        var mydate = moment($(".editable #pop_datum input").val(), "YYYY-MM-DD").toDate();
-                        if (mydate >= begin && mydate <= end) {
-                            if (confirm('biztos szeretnéd módosítani?')) {
-                                var tmp = $(this);
-                                $.ajax({
-                                    type: "POST",
-                                    url: "./BackEnd/ajax.php",
-                                    data: {
-                                        bid: $(this).parent().attr("bid"),
-                                        bjegy: $(".editable #pop_jegy input").val(),
-                                        btema: $(".editable #pop_tema input").val(),
-                                        bsuly: $(".editable #pop_suly input").val(),
-                                        bdatum: $(".editable #pop_datum input").val()
-                                    },
-                                    success: function (response) {
-                                        $(".editable input").prop( "disabled", true );
-                                        $(tmp).parent().removeClass("editable");
-                                    }
-                                });
+            if ($(this).parent().hasClass("created")) {
+                //véglegesítés INSERT
+                if ($(".created #pop_jegy input").val() > 0 && $(".created #pop_jegy input").val() < 6) {
+                    if ($.trim($(".created #pop_tema input").val()).length <= 200) {
+                        if ($(".created #pop_suly input").val() == "100%" ||  $(".created #pop_suly input").val() == "200%" || $(".created #pop_suly input").val() == "300%") {
+                            var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
+                            var datum = GetHonap(honap);
+                            var begin = moment(datum["begin"], "YYYY-MM-DD").toDate();
+                            var end = moment(datum["end"], "YYYY-MM-DD").toDate();
+                            var mydate = moment($(".created #pop_datum input").val(), "YYYY-MM-DD").toDate();
+                            if (mydate >= begin && mydate <= end) {
+                                if (confirm('biztos szeretnéd módosítani?')) {
+                                    var tmp = $(this);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "./BackEnd/ajax.php",
+                                        data: {
+                                            vjegy: $(".created #pop_jegy input").val(),
+                                            vtema: $(".created #pop_tema input").val(),
+                                            vsuly: $(".created #pop_suly input").val(),
+                                            vdatum: $(".created #pop_datum input").val()
+                                        },
+                                        success: function (response) {
+                                            $(".editable input").prop( "disabled", true );
+                                            $(tmp).parent().removeClass("editable");
+                                            $(tmp).parent().removeClass("created");
+                                        }
+                                    });
+                                }
+                            }
+                            else {  
+                                alert("Csak az adott év, "+honap+". hónapjában módosíthatod!");
                             }
                         }
-                        else {  
-                            alert("Csak az adott év, "+honap+". hónapjában módosíthatod!");
+                        else {
+                            alert("Nem létezik ilyen súlyozás!");
                         }
                     }
                     else {
-                        alert("Nem létezik ilyen súlyozás!");
+                        alert("Túl hosszú a téma!");
                     }
                 }
                 else {
-                    alert("Túl hosszú a téma!");
+                    alert("Nem létezik ilyen jegy!");
                 }
             }
             else {
-                alert("Nem létezik ilyen jegy!");
+                //véglegesítés UPDATE
+                if ($(".editable #pop_jegy input").val() > 0 && $(".editable #pop_jegy input").val() < 6) {
+                    if ($.trim($(".editable #pop_tema input").val()).length <= 200) {
+                        if ($(".editable #pop_suly input").val() == "100%" ||  $(".editable #pop_suly input").val() == "200%" || $(".editable #pop_suly input").val() == "300%") {
+                            var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
+                            var datum = GetHonap(honap);
+                            var begin = moment(datum["begin"], "YYYY-MM-DD").toDate();
+                            var end = moment(datum["end"], "YYYY-MM-DD").toDate();
+                            var mydate = moment($(".editable #pop_datum input").val(), "YYYY-MM-DD").toDate();
+                            if (mydate >= begin && mydate <= end) {
+                                if (confirm('biztos szeretnéd módosítani?')) {
+                                    var tmp = $(this);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "./BackEnd/ajax.php",
+                                        data: {
+                                            bid: $(this).parent().attr("bid"),
+                                            bjegy: $(".editable #pop_jegy input").val(),
+                                            btema: $(".editable #pop_tema input").val(),
+                                            bsuly: $(".editable #pop_suly input").val(),
+                                            bdatum: $(".editable #pop_datum input").val()
+                                        },
+                                        success: function (response) {
+                                            $(".editable input").prop( "disabled", true );
+                                            $(tmp).parent().removeClass("editable");
+                                        }
+                                    });
+                                }
+                            }
+                            else {  
+                                alert("Csak az adott év, "+honap+". hónapjában módosíthatod!");
+                            }
+                        }
+                        else {
+                            alert("Nem létezik ilyen súlyozás!");
+                        }
+                    }
+                    else {
+                        alert("Túl hosszú a téma!");
+                    }
+                }
+                else {
+                    alert("Nem létezik ilyen jegy!");
+                }
             }
         }
     });
@@ -122,7 +172,7 @@ $(document).ready(function() {
         var honap = $(this).parent().parent().parent().attr("honap");
         var datum = GetHonap(honap);
         $("#popup_table").append(
-            "<tr bid='"+Last()+"'>" +
+            "<tr bid='"+Last()+"' class='created editable'>" +
             "<td id='pop_jegy'><input type='text' name='jegy' placeholder='4' title='1-5 lehet jegyeket beírni!'></td>" +
             "<td id='pop_tema'><input type='text' name='tema' placeholder='téma' title='témát lehet beírni maximum 200 karakterig!'></td>" +
             "<td id='pop_suly'><input type='text' name='suly' placeholder='100%' title='a jegy súlyozása (100%,200%,300%)!'></td>" +
@@ -147,7 +197,7 @@ function GetHonap(honap) {
         url: "./FrontEnd/functions/ajax.php",
         data: {honap: honap},
         success: function (response) {
-            datum = response;
+            datum = $.parseJSON(response);
         }
     });
     return datum;
@@ -161,7 +211,7 @@ function Last() {
         url: './BackEnd/ajax.php',
         data: {last: "igaz"},
         success: function (response) {
-            id = response;
+            id = $.parseJSON(response);
         }
     });
     return id;
