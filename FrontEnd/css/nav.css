@@ -116,6 +116,7 @@ nav .menu_coll {
 #menu a{
     padding: 0 20px;
     text-decoration: none;
+    color: var(--altcolor);
 }
 
 #menu a:hover {
@@ -213,5 +214,8 @@ nav .menu_coll {
     }
     #login_col3 {
         display: none;
+    }
+    #menu a{
+        color: var(--navcolor);
     }
 }

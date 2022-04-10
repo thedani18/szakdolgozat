@@ -203,7 +203,7 @@ function Jegyek($id,$tantargy,$begin,$end)
 function TanarOsztalyok($id)
 {
     $sql =
-    "SELECT szd_osztaly.osztalyId AS 'osztalyId', megnevezeselo, megnevezesuto, megnevezes
+    "SELECT szd_osztaly.osztalyId AS 'osztalyId', megnevezeselo, megnevezesuto, megnevezes, szd_tantargy.tantargyId AS 'tantargyid'
     FROM szd_felhasznalo
     INNER JOIN szd_tgytr ON szd_felhasznalo.felhId = szd_tgytr.tanarId
     INNER JOIN szd_oszttgytr ON szd_tgytr.TTId = szd_oszttgytr.TTId
@@ -220,6 +220,7 @@ function TanarOsztalyok($id)
             $list[$n]["osztalyelo"] = $row["megnevezeselo"];
             $list[$n]["osztalyuto"] = $row["megnevezesuto"];
             $list[$n]["tantargy"] = $row["megnevezes"];
+            $list[$n]["tantargyid"] = $row["tantargyid"];
             $n++;
         }
     }

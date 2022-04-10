@@ -1,3 +1,6 @@
+CREATE DATABASE epenna;
+USE epenna;
+
 CREATE TABLE szd_jogosultsag (
     jogId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     jogosultsag VARCHAR(10) NOT NULL

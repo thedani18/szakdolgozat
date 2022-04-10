@@ -61,11 +61,10 @@ if (isset($_SESSION["login"])) {
 			<div class="menu_coll">
 				<div id="menu">';
 					if ($_SESSION["jogosultsag"] == "tanar") {
-						echo '<a name="szoveg" href="./?p=osztalyzatok">Tanár</a>';
-						echo '<a name="szoveg" href="./?p=teszt">Tanár</a>';
+						echo '<a name="szoveg" href="./?p=osztalyzatok">Tantárgyak</a>';
 					}
 					elseif ($_SESSION["jogosultsag"] == "diak") {
-						echo '<a name="szoveg" href="./?p=osztalyzatok">Diák</a>';
+						echo '<a name="szoveg" href="./?p=osztalyzatok">Osztályzatok</a>';
 					}
 			echo '</div>
 			</div>

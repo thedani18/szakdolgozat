@@ -20,9 +20,6 @@ if (isset($_POST["send"])) {
 		else
 			$kiiras = "Nem létezik ilyen felhasználónév!";
 	}
-	if (!isset($_SESSION["login"])) {
-		
-	}
 }
 
 if (isset($_SESSION["start"]) && isset($_SESSION["expire"])) {

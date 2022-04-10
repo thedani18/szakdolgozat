@@ -118,4 +118,7 @@ input[type=submit]:hover {
     #login_col3 {
         display: none;
     }
+    input[type=submit] {
+        font-size: 0.7rem;
+    }
 }

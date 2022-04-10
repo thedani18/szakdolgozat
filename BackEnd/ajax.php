@@ -1,4 +1,5 @@
 <?php
+include("session.php");
 include("DBConnection.php");
 
 //popup jegy lekérdezés
@@ -36,7 +37,10 @@ if (isset($_POST['bid']) == true && empty($_POST['bid']) == false) {
             break;
     }
     $siker = false;
-    $sql = "UPDATE szd_beiras SET datum = '".$_POST['bdatum']."', tema = '".$_POST['btema']."', jegy = '".$_POST['bjegy']."', tipusId = '$suly' WHERE beirasId = '".$_POST['bid']."';"; 
+    $sql = 
+    "UPDATE szd_beiras 
+    SET datum = '".$_POST['bdatum']."', tema = '".$_POST['btema']."', jegy = '".$_POST['bjegy']."', tipusId = '$suly' 
+    WHERE beirasId = '".$_POST['bid']."';"; 
     $result = connect()->query($sql);
     if ($result) {
         $siker = true;
@@ -66,7 +70,7 @@ if (isset($_POST['last']) == true && empty($_POST['last']) == false) {
         $id = $row["maxid"];
     }
     connect()->close();
-    echo json_encode($id);
+    echo json_encode($id+1);
 }
 
 if (isset($_POST['vjegy']) == true && empty($_POST['vjegy']) == false) {
@@ -86,12 +90,13 @@ if (isset($_POST['vjegy']) == true && empty($_POST['vjegy']) == false) {
     }
     $sql =
     "INSERT INTO szd_beiras (datum, tanarID, diakId, tantargyId, tema, jegy, TipusId) VALUES
-    ('".$_POST['vdatum']."',".$_SESSION['login'].",".$_POST['vdiak'].",".$_POST['tantargy'].",'".$_POST['vtema']."',".$_POST['vjegy'].",".$suly.");"; 
+    ('".$_POST['vdatum']."',".$_SESSION['login'].",".$_POST['vdiak'].",
+    ".$_POST['vtantargy'].",'".$_POST['vtema']."',".$_POST['vjegy'].",".$suly.");";
     $result = connect()->query($sql);
     if ($result) {
         $siker = true;
     }
 
     connect()->close();
-    return $siker;
+    echo $sql;
 }

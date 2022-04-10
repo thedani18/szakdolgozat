@@ -63,7 +63,7 @@ for ($i=0; $i < count($osztalyok); $i++) {
             echo "</th>";
         echo "</tr>";
     echo "</table>";
-    echo '<div id="'.$osztalyok[$i]["osztalyelo"].". ".$osztalyok[$i]["osztalyuto"]." ".$osztalyok[$i]["tantargy"].'" tantargy="'.$osztalyok[$i]["tantargy"].'" class="collapse" style="overflow-x:auto;">';
+    echo '<div id="'.$osztalyok[$i]["osztalyelo"].". ".$osztalyok[$i]["osztalyuto"]." ".$osztalyok[$i]["tantargy"].'" tantargy="'.$osztalyok[$i]["tantargy"].'" tantargyid="'.$osztalyok[$i]["tantargyid"].'" class="collapse" style="overflow-x:auto;">';
         echo '<table class="ttables">';
             echo '<tr id="tbar">';
                 echo '<th id="tnev">Név</th>';
@@ -91,7 +91,7 @@ for ($i=0; $i < count($osztalyok); $i++) {
             <span id="modtantargy">Tantárgy</span>
 			<span class="close" onclick="Close()">&times;</span>
 		</div>
-        <div class="mod-content" honap="" did="">
+        <div class="mod-content" honap="" did="" tantargyid="">
             <div class="modhead">
                 <div id="modnev">Tanuló neve - Hónap</div>
                 <div id="modinsert"><img id="plusz" src="./FrontEnd/img/plusz.png" alt="plusz.png"></div>

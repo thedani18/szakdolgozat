@@ -9,6 +9,7 @@ $(document).ready(function() {
         var honap = $("#tbar").children(":eq("+index+")").text();
         $(".mod-content").attr({honap: $("#tbar").children(":eq("+index+")").attr("honap")});
         $(".mod-content").attr({did: $(this).parent().find("#tnev").attr("did")});
+        $(".mod-content").attr({tantargyid: $(this).parent().parent().parent().parent().attr("tantargyid")});
         $("#modnev").text($(this).parent().find("#tnev").text()+" - "+honap);
         $('#popup_table tr').slice(1).remove();
         if($(this).attr("jegyid") != "")
@@ -63,18 +64,22 @@ $(document).ready(function() {
                     if ($.trim($(".created #pop_tema input").val()).length <= 200) {
                         if ($(".created #pop_suly input").val() == "100%" ||  $(".created #pop_suly input").val() == "200%" || $(".created #pop_suly input").val() == "300%") {
                             var honap = $(this).parent().parent().parent().parent().parent().attr("honap");
+                            var diakid = $(this).parent().parent().parent().parent().parent().attr("did");
+                            var tantargyid = $(this).parent().parent().parent().parent().parent().attr("tantargyid");
                             var datum = GetHonap(honap);
                             var begin = moment(datum["begin"], "YYYY-MM-DD").toDate();
                             var end = moment(datum["end"], "YYYY-MM-DD").toDate();
                             var mydate = moment($(".created #pop_datum input").val(), "YYYY-MM-DD").toDate();
                             if (mydate >= begin && mydate <= end) {
-                                if (confirm('biztos szeretnéd módosítani?')) {
+                                if (confirm('biztos szeretnéd létrehozni?')) {
                                     var tmp = $(this);
                                     $.ajax({
                                         type: "POST",
                                         url: "./BackEnd/ajax.php",
                                         data: {
+                                            vdiak: diakid,
                                             vjegy: $(".created #pop_jegy input").val(),
+                                            vtantargy: tantargyid,
                                             vtema: $(".created #pop_tema input").val(),
                                             vsuly: $(".created #pop_suly input").val(),
                                             vdatum: $(".created #pop_datum input").val()
@@ -155,7 +160,7 @@ $(document).ready(function() {
     $("body").on('click', '.torles', function() {
         if (confirm('biztos szeretnéd törölni?')) {
             var tmp = $(this);
-            $.ajax({
+            $.ajax({    
                 type: "POST",
                 url: "./BackEnd/ajax.php",
                 data: {torlesid: $(this).parent().attr("bid")},
@@ -167,21 +172,23 @@ $(document).ready(function() {
     });
 
     $("body").on('click', '#plusz', function () {
-        var honap = $(this).parent().parent().parent().attr("honap");
-        var datum = GetHonap(honap);
-        $("#popup_table").append(
-            "<tr bid='"+Last()+"' class='created editable'>" +
-            "<td id='pop_jegy'><input type='text' name='jegy' placeholder='4' title='1-5 lehet jegyeket beírni!'></td>" +
-            "<td id='pop_tema'><input type='text' name='tema' placeholder='téma' title='témát lehet beírni maximum 200 karakterig!'></td>" +
-            "<td id='pop_suly'><input type='text' name='suly' placeholder='100%' title='a jegy súlyozása (100%,200%,300%)!'></td>" +
-            "<td id='pop_datum'><input type='text' name='datum' placeholder='"+datum["begin"]+"' title='csak a nap módosítása lehetséges!'></td>" +
-            "<td class='modositas'>" +
-                "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
-                "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
-            "</td>" +
-            "<td class='torles'><img id='kuka' src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
-            "</tr>"
-        );
+        if (!$(".created")[0]) {
+            var honap = $(this).parent().parent().parent().attr("honap");
+            var datum = GetHonap(honap);
+            $("#popup_table tr:first").after(
+                "<tr bid='"+Last()+"' class='created editable'>" +
+                "<td id='pop_jegy'><input type='text' name='jegy' placeholder='4' title='1-5 lehet jegyeket beírni!'></td>" +
+                "<td id='pop_tema'><input type='text' name='tema' placeholder='téma' title='témát lehet beírni maximum 200 karakterig!'></td>" +
+                "<td id='pop_suly'><input type='text' name='suly' placeholder='100%' title='a jegy súlyozása (100%,200%,300%)!'></td>" +
+                "<td id='pop_datum'><input type='text' name='datum' placeholder='"+datum["begin"]+"' title='csak a nap módosítása lehetséges!'></td>" +
+                "<td class='modositas'>" +
+                    "<img id='ceruza' src='./FrontEnd/img/ceruza.png' alt='ceruza.png'>" +
+                    "<img id='pipa' src='./FrontEnd/img/pipa.png' alt='pipa.png'>" +
+                "</td>" +
+                "<td class='torles'><img id='kuka' src='./FrontEnd/img/kuka.png' alt='kuka.png'></td>" +
+                "</tr>"
+            );
+        }
     });
     //TODO újnál class létrehozás és akkor kuka nem elérhető
     //és ha van más ilyen class akkor nem enged létre hozni még egyet
@@ -280,37 +287,16 @@ function Timer(expire) {
 function MenuSwap(bg) {
     var szoveg = document.getElementsByName("szoveg");
     var nav = document.getElementById("nav");
-    if (screen.width <= 850) {
-        if (bg == 1) {
-            for (var i = 0; i < szoveg.length; i++) {
-                szoveg[i].style.color = "blue";
-            }
-            nav.style.boxShadow = "none";
-            nav.style.backgroundColor = "none";
-        }
-        else {
-            for (var i = 0; i < szoveg.length; i++) {
-                szoveg[i].style.color = "red";
-            }
-            nav.style.boxShadow = "rgba(17, 17, 26, 0.1) 0px 1px 0px";
-            nav.style.backgroundColor = "white";
-        }
+    if (bg == 1) {
+        nav.style.boxShadow = "none";
+        nav.style.backgroundColor = "none";
     }
     else {
-        if (bg == 1) {
-            for (var i = 0; i < szoveg.length; i++) {
-                szoveg[i].style = "color: var(--altcolor);";
-            }
-            nav.style.boxShadow = "none";
-            nav.style.backgroundColor = "none";
+        for (var i = 0; i < szoveg.length; i++) {
+            szoveg[i].style.color = "var(--navcolor)";
         }
-        else {
-            for (var i = 0; i < szoveg.length; i++) {
-                szoveg[i].style.color = "var(--navcolor)";
-            }
-            nav.style.boxShadow = "rgba(17, 17, 26, 0.1) 0px 1px 0px";
-            nav.style.backgroundColor = "white";
-        }
+        nav.style.boxShadow = "rgba(17, 17, 26, 0.1) 0px 1px 0px";
+        nav.style.backgroundColor = "white";
     }
 }
 

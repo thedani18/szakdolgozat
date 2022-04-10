@@ -24,10 +24,6 @@ if (isset($_SESSION["login"])) {
 					$content="./FrontEnd/pages/tanar_osztalyzatok.php";
 					$_POST["bg"] = 0;
 					break;
-				case "teszt": 
-					$content="./FrontEnd/pages/teszt_lekerdezes.php";
-					$_POST["bg"] = 0;
-					break;
 				default: 
 					$content="./FrontEnd/pages/home.php";
 					break;
